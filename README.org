@@ -1,0 +1,1417 @@
+-*- mode:org; fill-column:70; coding:utf-8; -*-
+* org-mode configuration
+#+STARTUP: overview customtime noalign logdone hidestars
+#+TAGS: ARCHIVE(a) WORK(w) LIFE(l) EMACS(e) IMPORTANT(i) Difficult(d) Communication(c) RECOMMENDATE(r) Tool(t) Habit(h) noexport(n) Share (s) BLOG(b)
+#+SEQ_TODO: TODO HALF ASSIGN | DONE BYPASS DELEGATE CANCELED DEFERRED
+#+DRAWERS: HIDDEN CODE CONF EMAIL WEBPAGE SNIP
+#+PRIORITIES: A D C
+#+ARCHIVE: %s_done::** Finished Tasks
+#+AUTHOR: dennyzhang.com (denny@dennyzhang.com)
+#+OPTIONS: toc:2 \n:t ^:nil creator:nil d:nil
+
+* TODO How to undo a git pull?
+* TODO git duet wf dz
+* TODO git diff --cache
+* TODO git: ~/.git-authors
+* TODO git commit template
+* TODO git duet dz jk
+** customize email
+https://github.com/git-duet/git-duet
+pairs:
+  jd: Jane Doe; jane
+  fb: Frances Bar
+email:
+  domain: awesometown.local
+email_addresses:
+  jd: jane@awesome.local
+* TODO git lola
+* TODO git checkout fails with "reference is not a tree": https://github.com/grpc/grpc/issues/3428
+* TODO git issue
+Denny-mac:sandbox-soterianetworks mac$ git pull customer denny-docker-sandbox
+From bitbucket.org:nubesecure/sandbox
+ * branch            denny-docker-sandbox -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
+* TODO git pushd
+* #  --8<-------------------------- separator ------------------------>8-- :noexport:
+* git                                                    :IMPORTANT:Personal:
+| Item                          | Comment                                                        |
+|-------------------------------+----------------------------------------------------------------|
+| man 7 gittutorial             | man page for git tutorial                                      |
+| gitk                          | git repository browser; sudo apt-get install gitk              |
+| github保存密码                | git config remote.origin.url git@github.com:xiaozibao/test.git |
+| git change url of remote repo | git remote set-url origin git://new.url.here                   |
+
+- command list
+| Item                                | Comment                                                                                                |
+|-------------------------------------+--------------------------------------------------------------------------------------------------------|
+| 撤销本地修改                        | git checkout dirname *.txt                                                                             |
+| 撤销最近一次提交　                  | git revert --no-commit head                                                                            |
+| git revert last change              | git reset --soft HEAD^                                                                                 |
+| undo git pull                       | git reset --hard                                                                                       |
+| revert a faulty branch merge        | 789a4e8a3b436050082db5747762158aaca00a27                                                               |
+|-------------------------------------+--------------------------------------------------------------------------------------------------------|
+| undo merge                          | git merge --abort                                                                                      |
+| 创建一个本地branch                  | git branch denny                                                                                       |
+| 删除一个本地branch                  | git branch -d denny                                                                                    |
+| 把本地新创建的branch push到server   | git push origin <branchname>                                                                           |
+| 删除server一个branch                | git push origin --delete <branchName>                                                                  |
+| 合并branch                          | git merge <branchname>                                                                                 |
+| 查看某个check-in的修改              | git diff  ed3563a9538a183cb1e545458691ea6f626db898                                                     |
+| diff two revision                   | git diff 4d1c375e281627a7ea45b0b3abad08af51927851..3d2738a94649d444bd69c67cf1431e4693f33cf9            |
+| show file changes                   | git diff --name-only 9ee912afe75bf8b4a343b77edfebf5b9f5291dd7 4d1c375e281627a7ea45b0b3abad08af51927851 |
+| git checkout file of given revision | git checkout 4d1c375e281627a7ea45b0b3abad08af51927851 server.py                                        |
+
+- git branch
+| git                          | svn                            | comment                               |
+|------------------------------+--------------------------------+---------------------------------------|
+| git ls-remote --heads origin |                                |                                       |
+| git branch branch            | svn copy http://... http://... | BRANCHING                             |
+| git checkout branch          | svn switch http://...          |                                       |
+| git branch                   | svn list http://.../           |                                       |
+| git checkout rev             | svn update -r rev              |                                       |
+| git checkout prevbranch      | svn update                     |                                       |
+| git checkout path            |                                | Restore a file from the last revision |
+| git merge branch             |                                |                                       |
+| git push -u origin dev       |                                | push a local branch to server         |
+
+- git tag
+| Name                                           | Comment |
+|------------------------------------------------+---------|
+| git fetch --tags; git checkout tags/<tag_name> |         |
+
+- git diff
+| Name                   | Comment                            |
+|------------------------+------------------------------------|
+| git diff               |                                    |
+| git diff --name-status | git commit前如何过列出被修改的文件 |
+
+- git & svn
+| git                                            | svn                            | Comment                               |
+|------------------------------------------------+--------------------------------+---------------------------------------|
+| git show HEAD~2                                |                                |                                       |
+| git clone url                                  | svn checkout url               |                                       |
+| git pull                                       | svn update                     |                                       |
+| git tag -a sandbox-v2 -m "sandbox v2"          | svn copy http://... http://... |                                       |
+|------------------------------------------------+--------------------------------+---------------------------------------|
+| git tag -l                                     | svn list http://.../           | list local tags                       |
+| git ls-remote --tags                           |                                | list remote tags                      |
+| git push --tags                                |                                | push tag                              |
+| git show tag                                   | svn log --limit 1 http://...   |                                       |
+|------------------------------------------------+--------------------------------+---------------------------------------|
+| git init                                       |                                | initialize the repository             |
+| git add .                                      |                                | add all files under current directory |
+| git show rev:path/to/file                      |                                |                                       |
+| git blame path/to/file                         |                                |                                       |
+| git diff rev path                              | svn diff -rrev path            |                                       |
+|------------------------------------------------+--------------------------------+---------------------------------------|
+| git config --global/system                     |                                |                                       |
+** DONE [#A] setup git repo for mdmdevops-totvslabs: remote       :IMPORTANT:
+   CLOSED: [2016-07-27 Wed 10:43]
+
+git clone git@bitbucket.org:lrpdevops/mdmdevops-totvslabs.git
+git config remote.customer.url git@github.com:TOTVS/mdmdevops.git
+
+################################################################################
+git config remote.origin.url git@bitbucket.org:lrpdevops/mdmdevops-totvslabs.git
+
+git checkout -b sprint-37
+
+git pull customer sprint-37
+
+mdmdevops-totvslabs/.git/config
+
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+	url = git@bitbucket.org:lrpdevops/mdmdevops-totvslabs.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[remote "customer"]
+	url = git@github.com:TOTVS/mdmdevops.git
+	fetch = +refs/heads/*:refs/remotes/customer/*
+** TODO git clone出来的，没有branch list
+** TODO 生成补丁（patch），把补丁发送给主开发者
+** TODO git misc stuff                                             :noexport:
+*** TODO git svn fetch failed
+**** console shot                                                  :noexport:
+#+BEGIN_EXAMPLE
+Item is not readable: Item is not readable at /usr/lib/git-core/git-svn line 1702
+#+END_EXAMPLE
+*** TODO git generate diff in svn format                 :IMPORTANT:noexport:
+**** email from Ming
+#+BEGIN_EXAMPLE
+Hang already used pos-review to generate RB request from git diff. Hang, can you give us your experience on this?
+Thanks,
+Jason
+From: Zhang, Denny
+Sent: Wednesday, March 24, 2010 10:13 AM
+To: Zhang, Ming
+Cc: Chen, Jason (CIG); Zhou, Hang; Shen, Lizhong
+Subject: RE: generate diff from git for RB
+Hi Ming
+Hope the following solve your problem.
+# Problem: Reviewboard are expecting \t after filename.
+The diff format of svn conform to the rule, while git diff format violate.
+http://code.google.com/p/reviewboard/source/browse/trunk/reviewboard/diffviewer/parser.py?r=1361\\
+How reviewword parse
+Sample of git diff format:
+,-----------
+| diff --git a/src/mgmt/pylib/mauiverify b/src/mgmt/pylib/mauiverify
+| old mode 100644
+| new mode 100755
+| index a9eb2e0..0702120
+| --- a/src/mgmt/pylib/mauiverify
+| +++ b/src/mgmt/pylib/mauiverify
+`-----------
+Sample of SVN diff format:
+,-----------
+| Index: mauiverify
+| ===================================================================
+| --- mauiverify (revision 49747)
+| +++ mauiverify (working copy)
+| @@ -25,12 +25,6 @@
+| import random
+| import string
+| import pdb
+`-----------
+# Solution: a shell script to convert git format to diff format
+- Add a script of git-svn-diff to the $PATH(Show in the attachment).
+## Add the alias to the git configuration
+[alias]
+ svn-diff=!git-svn-diff
+## Generate diff by: git svn-diff
+http://www.mail-archive.com/trafficserver-dev@incubator.apache.org/msg00864.html\\
+git-svn diff
+http://stackoverflow.com/questions/708202/git-format-patch-to-be-svn-compatable\\
+Git format-patch to be svn compatable?
+Thanks,
+Denny
+-----Original Message-----
+From: Zhang, Ming
+Sent: 2010年3月24日 3:26
+To: Chen, Jason (CIG)
+Cc: Zhang, Denny; Zhou, Hang; Shen, Lizhong
+Subject: generate diff from git for RB
+Hi All
+Try to seek some idea, I tried to generate diff for RB but always get error like 'No valid separator after the filename was found in the diff header'. Did a quick check and could not find solution. Wonder if your guys have workaround? Thanks!
+Best Regards
+- Ming Zhang
+CIG, EMC Corporation
+Thanks & Regards,
+Denny Zhang
+CIG Maui Sysmgmt Team
+EMC ShangHai R&D -- Software Engineer
+Tel: 86-21-60951100(2273)
+Email: Zhang_Denny@emc.com
+EMC²
+Where information lives......
+#+END_EXAMPLE
+*** TODO generate diff from git for ReviewBoard
+**** email from Hang
+#+BEGIN_EXAMPLE
+reviewboard support git-svn usage natively, its developers also use the same way. The discussion is available at.
+http://groups.google.com/group/reviewboard/browse_thread/thread/3423e2c8f71c5c3a?pli=1\\
+Main steps:
+(1) configure git, add rb address into .git/config
+[reviewboard]
+url = http://10.32.171.184
+(2) use post-review with "--parent=<git-branch>"
+You could also use the following options:
+--guess-summary
+--guess-description
+Then post-review will try to guess summary and description from git log.
+Thanks,
+Hang
+#+END_EXAMPLE
+*** TODO Install git in redhat
+**** TODO install by yum
+- install zlib-devel openssl-devel perl cpio expat-devel gettext-devel curl
+- yum install git-core
+**** TODO install by configure/make/make install
+#+begin_example
+wget http://kernel.org/pub/software/scm/git/git-1.6.5.7.tar.gz && tar zxvf git-1.6.5.7.tar.gz && cd git-1.6.5.7
+./configure --prefix=/usr/local/git
+make install install-doc install-html
+/usr/local/git/bin/git --version #显示: git version 1.6.5.7
+将git加入系统PATH
+,-----------
+| vim /etc/profile #加入下面一行
+| export PATH=$PATH:/usr/local/git/bin
+| source /etc/profile
+`-----------
+#+end_example
+**** useful link
+http://www.weekface.info/2010/01/03/linux-git-install\\
+Linux实做之Git分布式版本控制系统(安装git)
+*** TODO Switch google code from svn to git
+**** useful link
+http://code.google.com/p/support/wiki/ImportingFromGit\\
+ImportingFromGit
+http://hi.baidu.com/hunnon/blog/item/8a7b9c98e0f41b026f068c04.html\\
+在 Google Code 中使用 Git
+*** TODO git svn set-tree
+git svn set-tree
+Reading from stdin...
+*** TODO check in git to svn
+#+begin_example
+$ git svn dcommit
+Committing to https://rd-accounting.googlecode.com/svn/trunk ...
+Authentication realm: <https://rd-accounting.googlecode.com:443> Google Code Subversion Re
+pository
+Password for 'filebat.mark':
+Authentication realm: <https://rd-accounting.googlecode.com:443> Google Code Subversion Re
+pository
+Username: filebat.mark
+Password for 'filebat.mark':
+Authentication realm: <https://rd-accounting.googlecode.com:443> Google Code Subversion Re
+pository
+Username: filebat.mark
+Password for 'filebat.mark':
+Authorization failed: MKACTIVITY of '/svn/!svn/act/4b05885e-34b8-11df-b02f-4f7e9a581080':
+authorization failed: Could not authenticate to server: rejected Basic challenge (https://
+rd-accounting.googlecode.com) at /usr/lib/git-core/git-svn line 3894
+#+end_example
+*** TODO 如何将一个branch中的内容push到各一个branch               :IMPORTANT:
+*** TODO git commit前,如何快捷地查看一个文件的修改
+*** TODO 如何比较两个branch中同一个文件的异同
+*** TODO Make "git blame" work for svn based repository           :IMPORTANT:
+*** TODO Run difftool in git: git difftool [2/3]                  :IMPORTANT:
+ http://luhman.org/blog/2009/08/25/git-difftool-and-vimdiff\\
+ Git difftool and vimdiff
+**** TODO 如何在ntemacs中使用vimdiff
+**** DONE 在cygwin中vimdiff打开两个文件后,如何水平移动内容
+     CLOSED: [2010-03-21 星期日 01:27]
+**** DONE basic configuration
+     CLOSED: [2010-03-21 星期日 01:26]
+ git config --global diff.tool vimdiff
+ git difftool -y
+*** TODO side by side code review                   :IMPORTANT:noexport:HARD:
+http://xhfamily.com/x/notes/20080819_git-process.html\\
+Git and side-by-side code review
+**** diff_view.py
+#+begin_src python
+#!/usr/bin/python
+# Take a review directory, like /tmp/20080813_14450,
+# 1 read _file.list
+# 2 print out a list of files for reviews
+# 3 use vimdiff to review the diff
+import sys, string, re, os
+# vertical filler to make alignment nice; more context is better; I don't use icase, iwhite
+vimdiff="vim +\":set nu\" +\":set nospell\" +\":syntax off\" +\":set diffopt=vertical,filler,context:8\""
+def Main():
+ if (len(sys.argv) != 2 and len(sys.argv) != 3):
+ print "%s -l [review directory]"%sys.argv[0]
+ sys.exit(1)
+ # Get options
+ localDiff = False
+ needToDeleteDiffDir = False
+ reviewDir = ""
+ if "-l" == sys.argv[1]:
+ localDiff = True
+ reviewDir = sys.argv[2]
+ else:
+ reviewDir = sys.argv[1]
+ # Untar if needed
+ if os.path.isfile(reviewDir):
+ os.system("tar zxvf %s -C /tmp"%reviewDir)
+ reviewDir = "/tmp/%s"%(os.path.basename(reviewDir)[:-4])
+ needToDeleteDiffDir = True
+ else:
+ assert(os.path.isdir(reviewDir))
+ # Parse _file.list from reviewDir
+ idxFileName = "%s/_file.list"%reviewDir
+ if not os.path.isfile(idxFileName):
+ print "Cannot find _file.list in the review directory!"
+ sys.exit(1)
+ f = open(idxFileName)
+ prefix = reviewDir
+ files = []
+ for line in f.readlines():
+ files.append(line[:-1])
+ f.close()
+ # Now invoke vimdiff
+ i = -1;
+ while i < len(files):
+ printFiles(files);
+ print "Next/Previous/exit(N/p/x/<number>)?"
+ input = sys.stdin.readline();
+ try:
+ i = int(input)
+ except:
+ if (input.lower() == "x\n"):
+ break
+ elif (input.lower() == "p\n"):
+ i = i - 1
+ if i < 0:
+ i = 0
+ else:
+ i += 1
+ if not (i >= 0 and i < len(files)):
+ break
+ file = files[i]
+ absFile = "%s/%s"%(prefix, file)
+ if localDiff:
+ absFile = FindLocalFile(file)
+ os.system("%s %s +\":silent diffsplit %s/%s.BASE\" +\":set nonu\""%(vimdiff, absFile, prefix, file))
+ if needToDeleteDiffDir:
+ os.system("rm -rf %s"%reviewDir)
+def FindLocalFile(filename):
+ tok = filename.split('/')
+ for i in range(len(tok)):
+ f = "/".join(tok[i:])
+ if os.path.exists(f):
+ return f
+ assert(0)
+def printFiles(files):
+ i = 0;
+ while i < len(files):
+ print "%s [%d]"%(files[i], i)
+ i += 1
+ return
+Main()
+#+end_src
+**** git_diff_to_review.py
+#+begin_src python
+#!/usr/bin/python
+# called from git diff to:
+# 1. make a review directory in /tmp/ using date and parent pid, if not already there
+# 2. append file name in /tmp/<data_ppid>/_file.list
+# 3. copy the old and new version of the files according to the relative path
+import sys, os, datetime
+# filler to make alignment nice; more context is better; I don't use icase, iwhite
+vimdiff="vim +\":set nu\" +\":syntax off\" +\":set diffopt=vertical,filler,context:8\""
+def Main():
+ ppid = os.getppid()
+ assert(ppid != 0)
+ today = datetime.datetime.now().strftime("%Y%m%d")
+ dir = "/tmp/%s_%05d"%(today, ppid)
+ idxFilePath = "%s/_file.list"%dir
+ gitFilePath = sys.argv[1]
+ gitOldFilePath = sys.argv[2]
+ gitNewFilePath = sys.argv[5]
+ copyOldFilePath = "%s/%s.BASE"%(dir, gitFilePath)
+ copyNewFilePath = "%s/%s"%(dir, gitFilePath)
+ os.system("mkdir -p %s"%dir)
+ os.system("touch %s"%idxFilePath)
+ idxFile = open(idxFilePath, "a")
+ if 0 == idxFile.tell():
+ print dir
+ idxFile.write("%s\n"%gitFilePath);
+ idxFile.close()
+ #print gitFilePath, gitOldFilePath, gitNewFilePath, copyOldFilePath, copyNewFilePath
+ copyFile(gitOldFilePath, copyOldFilePath)
+ copyFile(gitNewFilePath, copyNewFilePath)
+ return
+def copyFile(fromPath, toPath):
+ os.system("mkdir -p %s"%os.path.dirname(toPath))
+ fromFile = open(fromPath, "r")
+ toFile = open(toPath, "w")
+ for line in fromFile.readlines():
+ toFile.write(line)
+ fromFile.close()
+ toFile.close()
+ return
+Main()
+#+end_src
+**** gr.sh
+#+begin_src sh
+function gr {
+ if [ -z "$1" ]; then
+ reviewDir=`GIT_EXTERNAL_DIFF=git_diff_to_review.py git diff`
+ elif [ "$1" = "--cached" ]; then
+ reviewDir=`GIT_EXTERNAL_DIFF=git_diff_to_review.py git diff --cached`
+ else
+ reviewDir=`GIT_EXTERNAL_DIFF=git_diff_to_review.py git diff "$1^" "$1"`
+ fi
+ if [ -d "$reviewDir" ]; then
+ theDir=`dirname $reviewDir`
+ theBase=`basename $reviewDir`
+ pushd "$theDir" >/dev/null
+ tar zcf "$theBase.tgz" "$theBase"
+ popd >/dev/null
+ echo "$reviewDir.tgz"
+ rm -rf $reviewDir
+ else
+ echo "something wrong with $reviewDir"
+ fi
+}
+gr $1
+#+end_src
+*** TODO git pull . master fail: you are in the middle of a conflicted merge
+**** HOW TO RESOLVE CONFLICTS
+#+begin_example
+HOW TO RESOLVE CONFLICTS
+ After seeing a conflict, you can do two things:.sp
+ o Decide not to merge. The only clean-ups you need are to reset the index file to the
+ HEAD commit to reverse 2. and to clean up working tree changes made by 2. and 3.;
+ git-reset --hard can be used for this.
+ o Resolve the conflicts. Git will mark the conflicts in the working tree. Edit the
+ files into shape and git-add them to the index. Use git-commit to seal the deal.
+ You can work through the conflict with a number of tools:.sp
+ o Use a mergetool. git mergetool to launch a graphical mergetool which will work you
+ through the merge.
+ o Look at the diffs. git diff will show a three-way diff, highlighting changes from
+ both the HEAD and remote versions.
+ o Look at the diffs on their own. git log --merge -p <path> will show diffs first
+ for the HEAD version and then the remote version.
+ o Look at the originals. git show :1:filename shows the common ancestor, git show
+ :2:filename shows the HEAD version and git show :3:filename shows the remote
+ version.
+#+end_example
+*** TODO git pull . master fail: you have not concluded your merge. (MERGE_HEAD exists)
+*** ;; -------------------------- separator --------------------------
+*** TODO git reset HEAD^: toss your latest commit away completely
+*** TODO git commit --amend: amend your latest commit
+*** TODO Configure git colors and visualize                       :IMPORTANT:
+#+begin_example
+# Colors. Git can produce colorful output with some commands; since some people hate colors way more than the rest likes them, by default the colors are turned off. If you would like to have colors in your output:
+git config --global color.diff auto
+git config --global color.status auto
+git config --global color.branch auto
+# Visualize. You may find it convenient to watch your repository using the gitk repository as you go.
+#+end_example
+*** TODO git merge --no-commit branch to review the merge result and then do the commit yourself
+*** TODO git log -Sstring shows the commits which add or remove any file data matching string
+*** TODO git commit -a -m时, 如何处理不可见字符,例如回车,tab键
+*** TODO git apply(patch -p0)
+*** TODO In emacs eshell-mode, "git log | less" fail
+Spawning child process: invalid argument
+** # --8<-------------------------- separator ------------------------>8--
+** DONE git diff: warning: terminal is not fully functional
+   CLOSED: [2012-01-22 Sun 14:43]
+add to /etc/bash.profile
+
+git config --global core.pager ""
+
+或者export PAGER=cat
+*** useful link
+    http://stackoverflow.com/questions/3952207/how-to-configure-emacs-app-to-use-git-within-shell-for-git-on-osx\\
+    How to configure emacs.app to use git within *shell* for git on OSX - Stack Overflow
+
+    http://kerneltrap.com/mailarchive/git/2008/12/17/4443664/thread\\
+    Re: git-diff should not fire up $PAGER, period! | KernelTrap
+** DONE git clone fail: error: server certificate verification failed
+   CLOSED: [2012-11-14 Wed 15:26]
+git config --global http.sslVerify false
+#+begin_example
+denny@denny-Vostro-1014:~/backup/essential/Dropbox/private_data/code$ git clone https://zhangwei@git.dev.ec-ae.net/bnow.git
+Cloning into 'bnow'...
+error: server certificate verification failed. CAfile: /etc/ssl/certs/ca-certificates.crt CRLfile: none while accessing https://zhangwei@git.dev.ec-ae.net/bnow.git/info/refs
+fatal: HTTP request failed
+denny@denny-Vostro-1014:~/backup/essential/Dropbox/private_data/code$ git config --global http.sslVerify false
+denny@denny-Vostro-1014:~/backup/essential/Dropbox/private_data/code$ git clone https://zhangwei@git.dev.ec-ae.net/bnow.git
+Cloning into 'bnow'...
+Password for 'https://zhangwei@git.dev.ec-ae.net': 87ac515f138d3e1cc8dd58e6d4dc24a36b52cabd
+
+remote: Counting objects: 1024, done.
+remote: Compressing objects: 100% (926/926), done.
+remote: Total 1024 (delta 422), reused 490 (delta 63)
+Receiving objects: 100% (1024/1024), 1.19 MiB | 1024 KiB/s, done.
+Resolving deltas: 100% (422/422), done.
+#+end_example
+** sample configuration                                            :noexport:
+[user]
+ name = Zhang, Denny
+ email = denny.zhang001@gmail.com
+[core]
+ repositoryformatversion = 0
+ filemode = true
+ bare = false
+ logallrefupdates = true
+ ignorecase = true
+ whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+ pager = less -FXRS
+[branch "branch-1"]
+ remote = master
+[color]
+ branch = auto
+ diff = auto
+ status = auto
+ ui = true
+[color "branch"]
+ current = yellow reverse
+ local = yellow
+ remote = green
+[color "diff"]
+ meta = yellow bold
+ frag = magenta bold
+ old = red bold
+ new = green bold
+ whitespace = red reverse
+[color "status"]
+ added = yellow
+ changed = green
+ untracked = cyan
+[tool]
+ diff = vimdiff
+** # --8<-------------------------- separator ------------------------>8--
+** TODO Git work with svn
+ http://flavio.castelli.name/howto_use_git_with_svn\\
+ Howto use Git and svn together
+ 1. install git and git-svn
+ 2. create the working dir: mkdir strigi
+ 3. init your git working dir:
+ cd strigi && git-svn init https://svn.kde.org/home/kde/trunk/kdesupport/strigi
+ git-svn init command is followed by the address of the svn repository (in this case we point to strigi’s repository)
+ 4. Find a commit regarding the project (you can get it from cia version control). Warning: the command git-log will show project’s history starting from this revision.
+ 5. Perform the command git-svn fetch -rREVISION
+ Where REVISION is the number obtained before.
+ 6. Update your working dir: git-svn rebase
+;; -------------------------- separator --------------------------
+http://www.viget.com/extend/effectively-using-git-with-subversion/\\
+Effectively Using Git With Subversion
+** useful link                                                    :IMPORTANT:
+ http://git.or.cz/course/svn.html\\
+ Git - SVN Crash Course
+ http://flavio.castelli.name/howto_use_git_with_svn\\
+ Howto use Git and svn together
+ http://baike.baidu.com/view/1531489.htm?fr=ala0_1\\
+ GIT
+ http://www.cnblogs.com/1-2-3/archive/2010/07/18/git-commands.html
+** DONE In eshell-mode of emacs, git commit can't open editor     :IMPORTANT:
+   CLOSED: [2010-03-19 星期五 23:46]
+使用-m选项直接给出message, 或使用-f选项给一个文件名
+
+If you don't pass any -m parameter or pass the -e parameter, your
+favorite $EDITOR will get run and you can compose your commit message
+there, just as with Subversion.
+
+git commit -a -m "This is another test"
+*** consoleshot                                                    :noexport:
+#+BEGIN_EXAMPLE
+git commit -a
+error: Terminal is dumb but no VISUAL nor EDITOR defined.
+Please supply the message using either -m or -F option.
+#+END_EXAMPLE
+** DONE git show rev:path/to/file
+   CLOSED: [2010-03-19 星期五 23:56]
+*** consoleshot                                                    :noexport:
+#+BEGIN_EXAMPLE
+   #+BEGIN_EXAMPLE
+git show 389fef009868695330c2d214df49c1ea6490111a
+commit 389fef009868695330c2d214df49c1ea6490111a
+Author: zhangd1 <zhangd1@CNRDZHANGD1L1C.corp.emc.com>
+Date: Fri Mar 19 23:52:57 2010 +0800
+ Test for verbose mode
+diff --git a/beta.el b/beta.el
+index 771288b..5adaa4d 100644
+--- a/beta.el
++++ b/beta.el
+@@ -1,6 +1,5 @@
+ ;; here is a test, another change
+ (defun open-buffer-path2 ()
+-
+ )
+ (defun open-buffer-path ()
+ ;;Run explorer on the directory of the current buffer.
+d:/temp/git/dryrun $
+
+   #+END_EXAMPLE
+#+END_EXAMPLE
+** DONE We can refer to latest revision by HEAD, its parent as HEAD^^ or HEAD~2. :IMPORTANT:
+   CLOSED: [2010-03-20 星期六 00:42]
+** DONE git diff rev path(svn diff -rrev path)
+   CLOSED: [2010-03-20 星期六 00:47]
+To get a diff with an specific revision and path
+** DONE Configure git colors                                      :IMPORTANT:
+   CLOSED: [2010-03-21 星期日 01:07]
+# Colors. Git can produce colorful output with some commands; since some people hate colors way more than the rest likes them, by default the colors are turned off. If you would like to have colors in your output:
+git config --global color.diff auto
+git config --global color.status auto
+git config --global color.branch auto
+;; -------------------------- separator --------------------------
+http://jblevins.org/log/tools/git-colors\\
+Git Colors
+[color]
+ branch = auto
+ diff = auto
+ status = auto
+[color "branch"]
+ current = yellow reverse
+ local = yellow
+ remote = green
+[color "diff"]
+ meta = yellow bold
+ frag = magenta bold
+ old = red bold
+ new = green bold
+[color "status"]
+ added = yellow
+ changed = green
+ untracked = cyan
+** DONE customize configuration template                          :IMPORTANT:
+   CLOSED: [2010-03-21 星期日 10:58]
+http://xhfamily.com/x/notes/20080819_git-process.html\\
+# in .gitconfig
+[commit]
+ template = /path/to/.git.commit.template
+# in .git.commit.template
+put your commit message title
+put your commit message details
+testing done:
+reviewers:
+** DONE 如何列出两个branch的不同的地方: git diff $branch-name beta.el :IMPORTANT:
+   CLOSED: [2010-03-21 星期日 11:15]
+** DONE Try git and review board                                   :noexport:
+   CLOSED: [2010-03-21 星期日 19:08]
+*** good for git
+- get different branches from various release
+- search for various check-in
+- check in to local, once the remote server is not accessible
+*** vimdiff
+ Here are simple steps about how to view diff in "vimdiff" manner when input "git diff":
+ http://technotales.wordpress.com/2009/05/17/git-diff-with-vimdiff/\\
+*** email 3
+#+BEGIN_EXAMPLE
+Hi All,
+Right now we can support to use CLI to upload review request instead of using GUI which would be more efficient. This will speed up your review request creation. Please take a look at below wiki on the details and let me know if you have any question.
+http://tvg01.lss.emc.com/mediawiki/index.php/Effective_Code_Review_by_using_ReviewBoard#For_code_submitter_-_CLI_create_review_request\\
+The quick step to use this CLI is:
+1. Install RBtools (post-review) package
+2. Create your own reviewboard configuration ($HOME/.reviewboardrc)
+3. Create patch file after bug fixing
+4. Create review request by using post-review
+Thanks,
+Jason
+From: Chen, Jason (CIG)
+Sent: Thursday, March 04, 2010 10:40 PM
+To: Zhang, Ming; Yin, Caihua; Zhou, Hang; Zhang, Denny; Feng, Longda; Shen, Lizhong
+Cc: Zhao, Yubo; Kang, Sukwoo
+Subject: RE: Review board general process and user guide wiki.
+Right now we only support upload diff from GUI. I will learn to provide a CLI tool for us to easily upload the patch review without access GUI. I know we are all developers… ;)
+Btw, git format patch is not supported at this time. I will also dig more into RB to have a check. I will update wiki about our on-going status on the improvements.
+Thanks,
+Jason
+From: Zhang, Ming
+Sent: Thursday, March 04, 2010 10:24 PM
+To: Chen, Jason (CIG); Yin, Caihua; Zhou, Hang; Zhang, Denny; Feng, Longda; Shen, Lizhong
+Cc: Zhao, Yubo; Kang, Sukwoo
+Subject: RE: Review board general process and user guide wiki.
+thanks a lot. it looks great to me.
+how we upload today? if we can export the server as NFS and thus every developer just need to copy, or svn diff > foo://bar/x.diff, then it is a small work for coder.
+________________________________________
+From: Chen, Jason (CIG)
+Sent: Thursday, March 04, 2010 3:06 AM
+To: Yin, Caihua; Zhou, Hang; Zhang, Denny; Feng, Longda; Shen, Lizhong
+Cc: Zhao, Yubo; Zhang, Ming; Kang, Sukwoo
+Subject: Review board general process and user guide wiki.
+Hi all,
+I have drafted one wiki page about how to use Review Board for our bug fixing review or other code review. We can try to use this during our 1.3.1 bug fixing process and see whether it can improve our review efficiency and quality. The purpose is to help all of us for a better code review approach rather than using email.
+https://tvg01.lss.emc.com/mediawiki/index.php/Effective_Code_Review_by_using_ReviewBoard
+This wiki has contained all our necessary information and still under construction. I will update it with more information in following days.
+Without doubt, there always have improvement areas we need to refine during daily use. Please send me your feedbacks or directly modify wiki page in the future improvement sections. I appreciate for your any suggestions.
+Thanks,
+Jason
+#+END_EXAMPLE
+*** email 1
+#+BEGIN_EXAMPLE
+Hello all,
+As time limited, I can only show you basic usage for reviewboard. Here is the reviewboard server IP which you can play around. You can register one user with your account name.
+http://10.32.171.184/\\
+If we feel there need more training, I can open another session for this. In the mean time, I will put the usage and instructions into wiki page.
+Feel free to let me know if you have any question or issues when use review board.
+Thanks,
+Jason
+-----Original Appointment-----
+From: Shen, Lizhong
+Sent: Thursday, February 04, 2010 12:46 PM
+To: Shen, Lizhong; Zhao, Yubo; Chen, Jason (CIG); Zhang, Denny; Zhou, Hang; Yin, Caihua; Feng, Longda
+Subject: Code review process discussion
+When: Thursday, February 04, 2010 2:00 PM-3:00 PM (GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi.
+Where: 蓬莱 (Fantasyland)(2F)
+Change:
+1. postpone the meeting to 14:00~15:00 since Yubo will be in office about 2:00PM
+Agenda:
+1. Brief introduction of Git (Lizhong)
+2. How to leverage Git to review code (lizhong)
+3. Reviewboard introduction (Jason)
+#+END_EXAMPLE
+*** email 2
+#+BEGIN_EXAMPLE
+I agree. Git looks cool and powerful for developer if can master it very well while RB is more user friendly and easy to use.
+P.S. RB can support git but I haven’t tried this before. You can have a try on this. I will send out the detail instructions later about setup and manage.
+Thanks,
+Jason
+From: Shen, Lizhong [mailto:Shen_lizhong@emc.com]
+Sent: Thursday, February 04, 2010 3:45 PM
+To: Chen, Jason (CIG)
+Cc: Zhao, Yubo; Zhang, Denny; Zhou, Hang; Yin, Caihua; Feng, Longda
+Subject: RE: Code review process discussion
+Hi all,
+ Here is the wiki page for git: https://tvg01.lss.emc.com/mediawiki/index.php/Run_git_in_cig
+ I think both RB and Git have their own advantage for code view. If RB could support Git well, that would be nice.
+Thanks!
+Lizhong, Shen
+GIG/Atmos
+8621 60951100 ext 2272
+-----Original Message-----
+From: Chen, Jason (CIG) <Chen_Jason@emc.com>
+To: Shen, Lizhong <Shen_Lizhong@emc.com>, Zhao, Yubo <Zhao_Yubo@emc.com>, Zhang, Denny <Zhang_Denny@emc.com>, Zhou, Hang <Zhou_Hang@emc.com>, Yin, Caihua <Yin_Caihua@emc.com>, Feng, Longda <Feng_Longda@emc.com>
+Subject: RE: Code review process discussion
+Date: Thu, 4 Feb 2010 02:39:59 -0500
+Hello all,
+As time limited, I can only show you basic usage for reviewboard. Here is the reviewboard server IP which you can play around. You can register one user with your account name.
+http://10.32.171.184/\\
+If we feel there need more training, I can open another session for this. In the mean time, I will put the usage and instructions into wiki page.
+Feel free to let me know if you have any question or issues when use review board.
+Thanks,
+Jason
+-----Original Appointment-----
+From: Shen, Lizhong
+Sent: Thursday, February 04, 2010 12:46 PM
+To: Shen, Lizhong; Zhao, Yubo; Chen, Jason (CIG); Zhang, Denny; Zhou, Hang; Yin, Caihua; Feng, Longda
+Subject: Code review process discussion
+When: Thursday, February 04, 2010 2:00 PM-3:00 PM (GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi.
+Where: 蓬莱 (Fantasyland)(2F)
+Change:
+1. postpone the meeting to 14:00~15:00 since Yubo will be in office about 2:00PM
+Agenda:
+1. Brief introduction of Git (Lizhong)
+2. How to leverage Git to review code (lizhong)
+3. Reviewboard introduction (Jason)
+#+END_EXAMPLE
+** TODO Try git in emacs
+  git commit -a -m "Schedule backup"; git svn dcommit
+*** TODO Try magit in emacs
+  http://zagadka.vm.bytemark.co.uk/magit/magit.html\\
+  magit manual
+  | Key | Binding                        |
+  |-----+--------------------------------|
+  | $   | magit-display-process          |
+  | !   | magit-shell-command            |
+  | G   | magit-refresh-all              |
+  | ?   | magit-describe-item            |
+  | d   | magit-diff-working-tree        |
+  | V   | magit-show-branches            |
+  | X   | magit-reset-working-tree       |
+  | b   | magit-checkout                 |
+  | e   | magit-interactive-resolve-item |
+  | l   | magit-log                      |
+  |-----+--------------------------------|
+  | M-1 | magit-show-level-1-all         |
+  | M-2 | magit-show-level-2-all         |
+  | M-3 | magit-show-level-3-all         |
+  | M-4 | magit-show-level-4-all         |
+  mo-git-blame-current
+*** TODO customize check-in template in magit                     :IMPORTANT:
+*** TODO Magit Cheatsheet
+  http://daemianmack.com/magit-cheatsheet.html\\
+  Magit Cheatsheet
+*** ;; -------------------------- separator --------------------------
+*** TODO "git push origin master" fail: 'master' does not appear to be a git repository
+  $ git --no-pager push -v master branch-1
+  Pushing to master
+  fatal: 'master' does not appear to be a git repository
+  fatal: The remote end hung up unexpectedly
+  Git exited abnormally with code 128.
+**** useful link
+  http://stackoverflow.com/questions/922210/unable-to-git-push-master-to-github\\
+  Unable to Git-push master to Github
+*** TODO git push master fail: ambiguous argument 'HEAD..master/branch-1'
+  Unpulled commits:
+  fatal: ambiguous argument 'HEAD..master/branch-1': unknown revision or path not in the working tree.
+  Use '--' to separate paths from revisions
+*** TODO Work with Git from emacs
+  http://alexott.net/en/writings/emacs-vcs/EmacsGit.html\\
+  Work with Git from emacs
+  http://www.michael-hammer.at/blog/emacs_git/\\
+  Using Git with Emacs
+  http://www.emacswiki.org/emacs/Git\\
+  Git
+*** done
+**** DONE git blame, with the help of third party mo-git-blame
+     CLOSED: [2010-03-21 星期日 12:05]
+  http://www.bunkus.org/blog/2009/10/an-interactive-iterative-git-blame-mode-for-emacs/\\
+  An interactive, iterative ‘git blame’ mode for Emacs
+** # --8<-------------------------- separator ------------------------>8--
+** HALF git pull不太像svn up, 并没有拉回被删除的文件, 应该用git checkout ./smarty的类似命令
+   /sshx:root@192.168.51.102:/opt/local/bnow/bnow/priv/web
+
+   drwxr-xr-x 4 root root 4.0K Nov 28 11:28 smarty
+   drwxr-xr-x 2 root root 4.0K Nov 28 11:28 smarty_plugins
+** TODO git提交，但不产生新的提交历史记录
+** DONE [#A] git push失败                                         :IMPORTANT:
+   CLOSED: [2013-02-25 Mon 17:07]
+export $DISPLAY
+unset SSH_ASKPASS
+
+https://github.com/nlplab/brat/wiki/Installation
+This is due to SSH_ASKPASS being set to use gnome-ssh-askpass, see the
+discussion here. Just unset SSH_ASKPASS or set it to an empty string
+and you will be prompted for your password without the need for a
+GUI. Another fun note, on HTTPS you will receive a SSL certificate and
+old machines won't carry all the modern ones. To disable this prefix
+your git command with env GIT_SSL_NO_VERIFY=true, which of course
+isn't safe but works. For more SSH issues, see here.
+
+#+begin_example
+[root@localhost circle_storage]# git push
+
+(gnome-ssh-askpass:20840): Gtk-WARNING **: cannot open display:
+#+end_example
+** DONE [#A] github保存密码: ssh                                  :IMPORTANT:
+   CLOSED: [2013-02-05 Tue 11:44]
+https://help.github.com/categories/56/articles
+git config --global user.name dennyzhang
+
+git remote set-url origin https://dennyzhang:filebat1@github.com/pomelo422/xiaozibao.git
+git push --repo https://dennyzhang:filebat1@github.com/pomelo422/xiaozibao.git
+#+begin_example
+denny@denny-Vostro-1014:~/backup/essential/Dropbox/private_data$ git clone git@github.com:pomelo422/xiaozibao.git xiaozibao2
+Cloning into 'xiaozibao2'...
+Permission denied (publickey).
+fatal: The remote end hung up unexpectedly
+denny@denny-Vostro-1014:~/backup/essential/Dropbox/private_data$
+#+end_example
+** DONE git pull fail: export GIT_SSL_NO_VERIFY=true
+   CLOSED: [2013-06-14 Fri 16:39]
+git config --global http.sslVerify false
+https://help.github.com/articles/error-ssl-certificate-problem-verify-that-the-ca-cert-is-ok
+http://stackoverflow.com/questions/3777075/ssl-certificate-rejected-trying-to-access-github-over-https-behind-firewall
+#+begin_example
+/sshx:root@192.168.65.204: #$ git pull
+error: SSL certificate problem, verify that the CA cert is OK. Details:
+error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed while accessing https://git.ishopex.cn/zhangwei/event_trigger.git/info/refs
+
+fatal: HTTP request failed
+
+/sshx:root@192.168.65.204: #$ git config -l
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+remote.origin.url=https://git.ishopex.cn/zhangwei/event_trigger.git
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
+#+end_example
+** DONE mac git review
+   CLOSED: [2013-08-23 Fri 18:25]
+#+begin_example
+   sudo -l
+   curl http://python-distribute.org/distribute_setup.py | sudo python
+
+  curl http://pypi.python.org/packages/source/g/git-review/git-review-1.17.tar.gz > git-review.tar.gz
+   tar zxvf git-review.tar.gz
+   cd git-review-1.17
+   sudo python setup.py install
+
+#+end_example
+http://www.mediawiki.org/wiki/Gerrit/git-review
+http://wikimania2012.wikimedia.org/wiki/Hackathon/Laptop_setup/OSX_git-review
+*** DONE Could not connect to gerrit.: 没有把ssh的公钥传上去
+    CLOSED: [2013-08-23 Fri 18:25]
+https://bugs.launchpad.net/git-review/+bug/1097278
+#+begin_example
+bash-3.2$ git-review
+Could not connect to gerrit.
+Enter your gerrit username: denny
+Trying again with ssh://denny@review.ustack.com:29418/sage-usb.git
+<traceback object at 0x105c0bb90>
+We don't know where your gerrit is. Please manually create a remote
+named "gerrit" and try again.
+Traceback (most recent call last):
+  File "/usr/local/bin/git-review", line 1196, in <module>
+    main()
+  File "/usr/local/bin/git-review", line 1110, in main
+    config['hostname'], config['port'], config['project'])
+  File "/usr/local/bin/git-review", line 489, in check_remote
+    add_remote(hostname, port, project, remote)
+  File "/usr/local/bin/git-review", line 344, in add_remote
+    raise Exception("Could not connect to gerrit at %s" % remote_url)
+Exception: Could not connect to gerrit at ssh://denny@review.ustack.com:29418/sage-usb.git
+#+end_example
+** DONE git repository separation                                  :noexport:
+   CLOSED: [2013-09-10 Tue 16:42]
+*** wiki in untedstack
+#+begin_example
+skip to content
+
+UnitedStack Team Wiki
+User Tools
+Logged in as: Denny Zhang (denny)AdminUpdate ProfileLogout
+Site Tools
+
+Recent changesMedia ManagerSitemap
+Trace: • start • gerrit_的使用和常用的_git_workflow • competitive_products • using_git • git_manage_nest_repo
+New release available: 2013-05-10 "Weatherwax". upgrade now! [40] (what's this?)
+New release candidate available: 2013-03-06 "Weatherwax" RC1. upgrade now! [39] (what's this?)
+git_manage_nest_repo
+Table of Contents
+Problem Descriptin
+Possible Solutions
+Suggest Solution: git subtree
+Problem Descriptin
+一个git repo中有些文件夹来自于其它git repo。
+
+如何维护好这个git依赖，同时尽可能地降低人工操作？
+
+
+Possible Solutions
+git submodule :
+
+原理: 每个外部repo是一个submodule
+
+点评：使用时太多注意事项，极易忘记一些操作，导致状态混乱。
+
+例如：pull时忘记update submodule; commit -a时加错文件; 不在master分支时，容易出现HEAD状态紊乱。
+
+ http://blog.cnrainbird.com/index.php/2012/05/31/guan_yu_git_de_submodule/
+ 关于git的submodule的使用,微博分享工具 | Rainbird的个人博客
+ http://webfrogs.me/2013/03/20/git-submodule/
+ git submodule的使用 | webfrogs
+ http://somethingsinistral.net/blog/git-submodules-are-probably-not-the-answer/
+ Git submodules are probably not the answer
+ http://www.cocoachina.com/applenews/devnews/2013/0509/6161.html
+ Git Submodule的坑
+git subtree :
+
+原理：通过git本身提供的subtree merge功能实现
+
+点评：比git submodule用法简单不少，缺点是依赖repo的文件也会被checkout出来，提交在原repo中。
+
+该缺点，除占用一些多余磁盘空间外，影响不大。
+
+ http://makingsoftware.wordpress.com/2013/02/16/using-git-subtrees-for-repository-separation/
+ Using Git subtrees for repository separation &#8211; Making Software
+ https://github.com/apenwarr/git-subtree/blob/master/git-subtree.txt
+ git-subtree/git-subtree.txt at master · apenwarr/git-subtree · GitHub
+ http://h2ik.co/2011/03/having-fun-with-git-subtree/
+ Having Fun With Git Subtree | h2ik
+ http://blogs.atlassian.com/2013/05/alternatives-to-git-submodule-git-subtree/
+ Alternatives To Git Submodule: Git Subtree | Atlassian Blogs
+google repo :
+
+原理：通过提供一个外部工具来自动checkout相关repo，与erlang的rebar方式相似。
+
+点评：此法过于冷门，使用的人少。提供一个命令rep, 与标准git差异过大。对本问题不推荐使用
+
+ https://code.google.com/p/git-repo/
+ git-repo -repo - The multiple repository tool - Google Project Hosting
+ http://source.android.com/source/developing.html
+ Developing | Android Developers
+git external repo :
+
+原理：人工去git clone某个repo作为本地文件夹。
+
+点评：一个git repo只会有一个.git文件夹。即此法，别人在git clone本repo后，还需要一些手工操作。
+
+示例：
+cd ~/puppet
+git pull production
+git checkout -b super_project_py_dev
+cd modules/public/package/manifests/virtual/
+vi ubuntu.pp
+git commit -am "add python3-dev package"
+cd ~/puppet/modules/internal/group/manifests
+vi linux.pp
+git commit -am "Add python3?-dev packages to linux group"
+git push origin super_project_py_dev
+gitslave :
+
+原理：将一个git操作转化为多个repo的单独操作。例如gitslave commit, 即去每个repo做git commit。
+
+点评：使用人少，做的额外事情有些多。不建议使用。
+
+ http://gitslave.sourceforge.net
+ Gitslave&mdash;gits
+
+Suggest Solution: git subtree
+通过git subtree来维护repository separation
+
+示例:
+
+# checkout一个外部repo，作为本地的一个文件夹
+git remote add -f emacs https://github.com/dennyzhang/Denny-s-emacs-configuration.git
+git subtree add --prefix emacscnf emacs master --squash
+# update repo: 向该外部repo push修改
+git fetch emacs master
+git subtree pull --prefix emacscnf emacs master --squash
+
+git_manage_nest_repo.txt · Last modified: 2013/09/11 05:35 by denny
+Page Tools
+Edit this page
+Old revisions
+Backlinks
+Manage Subscriptions
+Back to top
+Except where otherwise noted, content on this wiki is licensed under the following license: CC Attribution-Share Alike 3.0 Unported
+
+
+#+end_example
+*** git submodule
+git submodule  add https://github.com/dennyzhang/Denny-s-emacs-configuration.git Submodules/emacs-conf
+
+git submodule foreach git pull origin master
+*** git subtree
+http://makingsoftware.wordpress.com/2013/02/16/using-git-subtrees-for-repository-separation/
+https://github.com/apenwarr/git-subtree/blob/master/git-subtree.txt
+http://h2ik.co/2011/03/having-fun-with-git-subtree/
+http://blogs.atlassian.com/2013/05/alternatives-to-git-submodule-git-subtree/
+*** google repo
+https://code.google.com/p/git-repo/
+
+http://source.android.com/source/developing.html
+*** GitSlave
+http://gitslave.sourceforge.net
+** DONE git submodule
+   CLOSED: [2015-01-16 Fri 16:44]
+git submodule add git@github.com:DennyZhang/chef-jenkins-xcode.git cookbooks/chef-jenkins-xcode
+git submodule update
+** DONE [#A] git: How to complete a git clone for a big project on an unstable connection?
+   CLOSED: [2015-07-28 Tue 11:30]
+git clone --depth 1 git@bitbucket.org:authright/iam.git --branch dev --single-branch
+- get latest revision, instead of all
+- get current version, instead of all
+
+#+BEGIN_EXAMPLE
+[7/28/15, 12:07:53 AM] denny: As follow up for today’s session share.
+
+关于，git clone一个bitbucket/github十分慢的问题。
+
+git没有断点续传的功能。但一个优化点是：如果你只想checkout某一个branch，那么下面的手段可以把你git clone的操作缩短50%左右。
+[7/28/15, 12:09:34 AM] denny: Run below command for comparison:
+
+cd /tmp/tmp1 && git clone --depth 1 git@bitbucket.org:authright/iam.git --branch dev --single-branch
+
+cd /tmp/tmp2 && git clone git@bitbucket.org:authright/iam.git
+http://stackoverflow.com/questions/3954852/how-to-complete-a-git-clone-for-a-big-project-on-an-unstable-connection
+http://stackoverflow.com/questions/14738219/how-to-resume-a-git-pull-clone-after-a-hung-up-unexpectedly
+#+END_EXAMPLE
+** DONE git show remote branch: git ls-remote --heads origin
+   CLOSED: [2016-06-02 Thu 07:43]
+** DONE rollback a git merge
+   CLOSED: [2016-07-23 Sat 22:43]
+http://stackoverflow.com/questions/7099833/how-to-revert-a-merge-commit-thats-already-pushed-to-remote-branch
+https://mijingo.com/blog/reverting-a-git-merge
+Here's a complete example in the hope that it helps someone:
+
+git revert -m 1 <commit-hash>
+git commit -m "Reverting the last commit which messed the repo."
+git push -u origin master
+** DONE delete github branch: delete local, then in gui
+   CLOSED: [2014-08-04 Mon 13:17]
+https://help.github.com/articles/creating-and-deleting-branches-within-your-repository
+** DONE git command: for a given file, compare with previous version: git diff HEAD^ default.rb
+   CLOSED: [2015-05-23 Sat 04:59]
+http://stackoverflow.com/questions/2428270/git-how-to-diff-changed-files-versus-previous-versions-after-a-pull
+git log -n 2 .kitchen.docker.yml
+git diff 25ed03cbfba39c1096a53abfb274c565907490ba..53f44c931b9465ce175fd2f8ab5f03002e8a2016 .kitchen.docker.yml
+** DONE [#B] git local push hook: run code static check
+   CLOSED: [2015-07-02 Thu 11:32]
+/Users/mac/Dropbox/private_data/osc/chef/iamdevops/.git/hooks/pre-push
+
+https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks
+http://stackoverflow.com/questions/4196148/git-pre-push-hooks
+http://stackoverflow.com/questions/1797074/local-executing-hook-after-a-git-push
+cd /Users/mac/Dropbox/private_data/osc/chef/iamdevops/cookbooks
+ls -1 | xargs rubocop
+
+/Users/mac/Dropbox/private_data/work/totvs/code/mdmdevops/.git/hooks/pre_push
+*** .git/hooks/pre_push
+#+BEGIN_EXAMPLE
+#!/bin/bash -e
+
+# An example hook script to verify what is about to be pushed.  Called by "git
+# push" after it has checked the remote status, but before anything has been
+# pushed.  If this script exits with a non-zero status nothing will be pushed.
+#
+# This hook is called with the following parameters:
+#
+# $1 -- Name of the remote to which the push is being done
+# $2 -- URL to which the push is being done
+#
+# If pushing without using a named remote those arguments will be equal.
+#
+# Information about the commits which are being pushed is supplied as lines to
+# the standard input in the form:
+#
+#   <local ref> <local sha1> <remote ref> <remote sha1>
+#
+# This sample shows how to prevent push of commits where the log message starts
+# with "WIP" (work in progress).
+
+remote="$1"
+url="$2"
+
+z40=0000000000000000000000000000000000000000
+
+IFS=' '
+while read local_ref local_sha remote_ref remote_sha
+do
+	if [ "$local_sha" = $z40 ]
+	then
+		# Handle delete
+		:
+	else
+		if [ "$remote_sha" = $z40 ]
+		then
+			# New branch, examine all commits
+			range="$local_sha"
+		else
+			# Update to existing branch, examine new commits
+			range="$remote_sha..$local_sha"
+		fi
+
+		# Check for WIP commit
+		commit=`git rev-list -n 1 --grep '^WIP' "$range"`
+		if [ -n "$commit" ]
+		then
+			echo "Found WIP commit in $local_ref, not pushing"
+			exit 1
+		fi
+	fi
+done
+
+cd ./cookbooks
+echo "test" >> /tmp/test.log
+ls -1 | xargs rubocop
+
+exit 0
+
+#+END_EXAMPLE
+** TODO STDERR: fatal: Cannot force update the current branch
+https://discourse.chef.io/t/strange-git-behavior-any-suggestion-is-welcome/6408/4
+https://github.com/chef/chef/issues/3025
+
+#+BEGIN_EXAMPLE
+
+This is the default behavior for the git resource. If you take a look at
+the docs, you’ll see the checkout_branch attribute, whose description
+reads: “Use to specify the name of a branch to be checked out. Default
+value: deploy.”
+
+So, instead of using the revision attribute, you may, instead, want to
+specify the checkout_branch attribute.
+
+What is happening right now is that it’s checking out a branch called
+deploy from the revision you’ve set, but that’s a bit confusing, based on
+what you’re expecting to see.
+#+END_EXAMPLE
+
+docker stop autoscale-test; docker rm autoscale-test
+docker run -t -P -d --name autoscale-test totvslabs/chef:latest /bin/bash
+
+docker exec -it autoscale-test bash
+working_dir=/root/
+devops_git_repo="git@github.com:TOTVS/mdmdevops.git"
+devops_repo_name="mdmdevops"
+devops_branch="1.40-deploy"
+
+vim /tmp/github_id_rsa
+** DONE git shallow clone: set the parameter to –depth 1
+   CLOSED: [2016-10-18 Tue 19:32]
+https://blogs.gnome.org/simos/2009/04/18/git-clones-vs-shallow-git-clones/
+
+http://stackoverflow.com/questions/6941889/is-it-safe-to-shallow-clone-with-depth-1-create-commits-and-pull-updates-aga
+https://www.perforce.com/blog/141218/git-beyond-basics-using-shallow-clones
+** DONE git diff without context: git diff mdm-cluster/recipes/default.rb  | grep -iE "^- |^\+ "
+   CLOSED: [2016-12-30 Fri 23:43]
+cd /Users/mac/backup/totvs_code/mdmdevops/dev/mdmdevops/cookbooks
+git diff mdm-cluster/recipes/default.rb
+#+BEGIN_EXAMPLE
+Denny-mac:mdm-cluster mac$ git diff   recipes/default.rb
+diff --git a/cookbooks/mdm-cluster/recipes/default.rb b/cookbooks/mdm-cluster/recipes/default.rb
+index 6d4c6a3..c9a81db 100755
+--- a/cookbooks/mdm-cluster/recipes/default.rb
++++ b/cookbooks/mdm-cluster/recipes/default.rb
+@@ -37,13 +37,11 @@ end
+
+ hosts = node['common_basic']['couchbase_hosts']
+ if hosts.include?(hostname) || hosts.include?(ip_address)
+-  include_recipe 'common-basic::precheck_db'
+   include_recipe 'couchbase-mdm::cluster'
+ end
+
+ hosts = node['common_basic']['elasticsearch_hosts']
+ if hosts.include?(hostname) || hosts.include?(ip_address)
+-  include_recipe 'common-basic::precheck_db'
+   include_recipe 'elasticsearch-mdm::cluster'
+ end
+#+END_EXAMPLE
+** DONE git get latest revision number: git rev-parse HEAD
+   CLOSED: [2017-01-30 Mon 12:13]
+http://stackoverflow.com/questions/5724513/in-git-how-do-i-figure-out-what-my-current-revision-is
+** #  --8<-------------------------- separator ------------------------>8--
+** DONE [#A] commit binary files to git repo, truncate git history
+   CLOSED: [2017-02-16 Thu 14:02]
+Finding and Purging Big Files From Git History
+https://rtyley.github.io/bfg-repo-cleaner/
+
+http://naleid.com/blog/2012/01/17/finding-and-purging-big-files-from-git-history
+http://stackoverflow.com/questions/2100907/how-to-remove-delete-a-large-file-from-commit-history-in-git-repository
+
+https://help.github.com/articles/removing-files-from-a-repository-s-history/
+https://robinwinslow.uk/2013/06/11/dont-ever-commit-binary-files-to-git/
+
+| Name                                     | Summary                                                            |
+|------------------------------------------+--------------------------------------------------------------------|
+| Remove huge files from git log           | java -jar bfg.jar --strip-blobs-bigger-than 100M some-big-repo.git |
+| Remove given file extension from git log |                                                                    |
+| Check removed files                      | find . -name "*REMOVED*"                                           |
+
+git clone --mirror git@bitbucket.org:nubesecure/dofacdenny.git
+bfg --strip-blobs-bigger-than 50M dofacdenny.git
+
+cd dofacdenny.git
+git reflog expire --expire=now --all && git gc --prune=now --aggressive
+
+#+BEGIN_EXAMPLE
+denny zhang REPORTER
+Fix: https://bitbucket.org/nubesecure/dofacdenny/src/69237520613a7a0228ed95520c79e82d92d92beb/bitbucket-pipelines.yml?at=images&fileviewer=file-view-default
+Edit  Pin to top  Mark as spam  Delete  2017-02-10
+ denny zhang REPORTER
+How to verify?
+git push to shrink-repo branch of dofacdenny, or run bitbucket pipeline in GUI
+
+We shall see .git directory shrink into as smaller as ~132MB. And a clean git clone would take ~333MB
+#+END_EXAMPLE
+
+git push
+
+
+Trigger hook for penroz repo:
+https://bitbucket.org/nubesecure/penroz/addon/pipelines/home#!/results/branch/images/page/1
+
+58MB: penroz/iamsvc/build/libs/iamsvc-1.0.0-SNAPSHOT.jar
+*** [#A] Removes large or troublesome blobs: bfg --strip-blobs-bigger-than 50M .git
+https://rtyley.github.io/bfg-repo-cleaner/#usage
+
+#+BEGIN_EXAMPLE
+Denny-mac:dofacdenny mac$  bfg --strip-blobs-bigger-than 50M .git
+
+Using repo : /Users/mac/backup/soteria_code/dofacdenny/.git
+
+Scanning packfile for large blobs: 324
+Scanning packfile for large blobs completed in 46 ms.
+Found 1 blob ids for large blobs - biggest=60886466 smallest=60886466
+Total size (unpacked)=60886466
+Found 123 objects to protect
+Found 6 commit-pointing refs : HEAD, refs/heads/docker-images, refs/heads/master, ...
+
+Protected commits
+-----------------
+
+These are your protected commits, and so their contents will NOT be altered:
+
+ * commit 26f7fc88 (protected by 'HEAD')
+
+Cleaning
+--------
+
+Found 64 commits
+Cleaning commits:       100% (64/64)
+Cleaning commits completed in 352 ms.
+
+Updating 4 Refs
+---------------
+
+	Ref                                 Before     After
+	-------------------------------------------------------
+	refs/heads/docker-images          | f7f91565 | 4156ab97
+	refs/heads/master                 | 26f7fc88 | e2b43e21
+	refs/remotes/origin/docker-images | 15e48e20 | 65333e26
+	refs/remotes/origin/master        | 26f7fc88 | e2b43e21
+
+Updating references:    100% (4/4)
+...Ref update completed in 34 ms.
+
+Commit Tree-Dirt History
+------------------------
+
+	Earliest                                              Latest
+	|                                                          |
+	...............DDDDDDDDDDDDDDDmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+
+	D = dirty commits (file tree fixed)
+	m = modified commits (commit message or parents changed)
+	. = clean commits (no changes to file tree)
+
+	                        Before     After
+	-------------------------------------------
+	First modified commit | d2830d9b | 656b7d51
+	Last dirty commit     | e1fda269 | e44f612f
+
+Deleted files
+-------------
+
+	Filename                    Git id
+	----------------------------------------------
+	iamsvc-1.0.0-SNAPSHOT.jar | 79016987 (58.1 MB)
+
+
+In total, 80 object ids were changed. Full details are logged here:
+
+	/Users/mac/backup/soteria_code/dofacdenny/.git.bfg-report/2017-02-02/22-54-53
+
+BFG run is complete! When ready, run: git reflog expire --expire=now --all && git gc --prune=now --aggressive
+Denny-mac:dofacdenny mac$ git reflog expire --expire=now --all && git gc --prune=now --aggressive
+Counting objects: 668, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (585/585), done.
+Writing objects: 100% (668/668), done.
+Total 668 (delta 213), reused 184 (delta 0)
+#+END_EXAMPLE
+*** git-filter-branch
+*** DONE install bfg in ubuntu
+    CLOSED: [2017-02-09 Thu 16:06]
+wget http://repo1.maven.org/maven2/com/madgag/bfg/1.12.15/bfg-1.12.15.jar
+java -jar ./bfg*.jar --strip-blobs-bigger-than 50M dofacdenny.git
+
+cd dofacdenny.git
+git reflog expire --expire=now --all && git gc --prune=now --aggressive
+
+git push
+** DONE Git - push failure / This operation must be run in a work tree
+   CLOSED: [2017-02-15 Wed 16:43]
+http://stackoverflow.com/questions/28412038/git-push-failure-this-operation-must-be-run-in-a-work-tree
+The remote repository in question is a bare repository.
+
+It will only contain the packed objects and refs etc that git internally stores and won't have any of the regular code files checked out. As such, there will be no working tree, and hence no working git status.
+
+That said, to check if your changes were pushed, just clone that repo in question to another location, and you will find your files all right:
+
+git clone /opt/git/inventory.git some/location/inventory_clone
+You might need to do a git checkout master in the newly cloned repo to actually see the code files.
+
+#+BEGIN_EXAMPLE
+cd /root/dofacdenny.git && git status && git push
+fatal: This operation must be run in a work tree
+#+END_EXAMPLE
+** TODO Git repository size: git count-objects -v
+https://confluence.atlassian.com/bitbucket/reduce-repository-size-321848262.html
+** DONE git status error: xcrun: error: invalid active developer path
+   CLOSED: [2017-01-05 Thu 23:33]
+http://stackoverflow.com/questions/32893412/command-line-tools-not-working-os-x-el-capitan-macos-sierra
+http://apple.stackexchange.com/questions/254380/macos-sierra-invalid-active-developer-path
+
+xcode-select --install: it will bring up a prompt to install the necessary command line tools.
+
+#+BEGIN_EXAMPLE
+Denny-mac:shared mac$ git status
+xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
+#+END_EXAMPLE
+** DONE revert git PR merge: https://bitbucket.org/nubesecure/brozton/pull-requests/10/remove-docker-composeenv/diff
+   CLOSED: [2017-03-11 Sat 17:40]
+http://stackoverflow.com/questions/38302119/revert-a-merged-pull-request-on-bitbucket
+
+git revert -m 1 <SHA-1>
+git push
+
+#+BEGIN_EXAMPLE
+https://bitbucket.org/nubesecure/brozton/pull-requests/10/remove-docker-composeenv/diff
+
+Denny-mac:brozton mac$ git revert --no-commit head
+error: Commit 405b0fa98d0f471aa6c72266c6859738247ddc93 is a merge but no -m option was given.
+fatal: revert failed
+#+END_EXAMPLE
+** DONE git pull: fatal: refusing to merge unrelated histories: --allow-unrelated-histories
+   CLOSED: [2017-11-08 Wed 17:26]
+https://stackoverflow.com/questions/38255655/trying-to-pull-files-from-my-github-repository-refusing-to-merge-unrelated-his
