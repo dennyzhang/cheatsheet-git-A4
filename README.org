@@ -8,7 +8,6 @@
 #+ARCHIVE: %s_done::** Finished Tasks
 #+AUTHOR: dennyzhang.com (denny@dennyzhang.com)
 #+OPTIONS: toc:2 \n:t ^:nil creator:nil d:nil
-
 * TODO How to undo a git pull?
 * TODO git duet wf dz
 * TODO git diff --cache

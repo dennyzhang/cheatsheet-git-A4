@@ -30,8 +30,9 @@ CheatSheet For Git And GitHub
 
 # Git
 
-| Name                                | Comment                                     |
-| :---------------------------------- | ------------------------------------------- |
+| Name                                           | Comment                                                                                                                     |
+| :--------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| squash multiple comments to make history clean | [link](https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit)  |
 
 # More links
 
