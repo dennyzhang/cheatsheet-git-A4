@@ -8,12 +8,35 @@
 #+ARCHIVE: %s_done::** Finished Tasks
 #+AUTHOR: dennyzhang.com (denny@dennyzhang.com)
 #+OPTIONS: toc:2 \n:t ^:nil creator:nil d:nil
+* DONE git squash
+  CLOSED: [2018-07-16 Mon 17:06]
+https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit
+
+Squash All Commits Related to a Single Issue into a Single Commit · todotxt/todo.txt-android Wiki · GitHub
+
+#+BEGIN_EXAMPLE
+Once you have rebased your work on top of the latest state of the upstream master, you may have several commits related to the issue you were working on. Once everything is done, squash them into a single commit with a descriptive message, like "Issue #100: Retweet bugfix."
+
+To squash four commits into one, do the following:
+
+$ git rebase -i HEAD~4
+In the text editor that comes up, replace the words "pick" with "squash" next to the commits you want to squash into the commit before it. Save and close the editor, and git will combine the "squash"'ed commits with the one before it. Git will then give you the opportunity to change your commit message to something like, "Issue #100: Fixed retweet bug."
+
+Important: If you've already pushed commits to GitHub, and then squash them locally, you will have to force the push to your branch.
+
+$ git push origin branch-name --force
+Helpful hint: You can always edit your last commit message, before pushing, by using:
+
+$ git commit --amend
+#+END_EXAMPLE
+* TODO github generate http link for two commits
+* #  --8<-------------------------- separator ------------------------>8-- :noexport:
 * TODO How to undo a git pull?
 * TODO git duet wf dz
 * TODO git diff --cache
 * TODO git: ~/.git-authors
 * TODO git commit template
-* TODO git duet dz jk
+* HALF git duet dz jk
 ** customize email
 https://github.com/git-duet/git-duet
 pairs:

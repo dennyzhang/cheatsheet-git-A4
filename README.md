@@ -21,12 +21,14 @@ CheatSheet For Git And GitHub
 
 # GitHub
 
-| Name                           | Comment                                                                                           |
-| :----------------------------  | ------------------------------------------------------------------------------------------------- |
-| Compare two revision           | [https://github.com/…/…/compare/sha1…sha2](https://www.dennyzhang.com/github_wiki#sec-1-4)        |
-| Generate link for a code block | [gh-md-toc](https://www.dennyzhang.com/github_wiki#sec-1-3)                                       |
-| Git clone wiki                 | [link](https://www.dennyzhang.com/github_wiki#sec-1-1)                                            |
-| Generate TOC                   | [gh-md-toc](https://www.dennyzhang.com/github_wiki#sec-1-2)                                       |
+| Name                                | Comment                                                                                           |
+| :----------------------------       | ------------------------------------------------------------------------------------------------- |
+| Generate link for a code block      | [gh-md-toc](https://www.dennyzhang.com/github_wiki#sec-1-3)                                       |
+| Git clone wiki                      | [link](https://www.dennyzhang.com/github_wiki#sec-1-1)                                            |
+| Generate TOC                        | [gh-md-toc](https://www.dennyzhang.com/github_wiki#sec-1-2)                                       |
+| Github Shortcut                     | [link](https://help.github.com/articles/using-keyboard-shortcuts/)                                |
+| Compare two revision                | [https://github.com/…/…/compare/sha1…sha2](https://www.dennyzhang.com/github_wiki#sec-1-4)        |
+| Compare master for latest 3 commits | https://github.com/DennyZhang/cheatsheet-git-a4/compare/HEAD~3...HEAD                             |
 
 # Git
 
@@ -35,6 +37,10 @@ CheatSheet For Git And GitHub
 | squash multiple comments to make history clean | [link](https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit)  |
 
 # More links
+
+```
+https://github.com/git-tips/tips
+```
 
 TODO: Need to automatically generate A4 pdf
 
