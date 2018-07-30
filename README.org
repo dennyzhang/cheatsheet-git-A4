@@ -1,13 +1,59 @@
--*- mode:org; fill-column:70; coding:utf-8; -*-
-* org-mode configuration
+* org-mode configuration                                           :noexport:
 #+STARTUP: overview customtime noalign logdone hidestars
-#+TAGS: ARCHIVE(a) WORK(w) LIFE(l) EMACS(e) IMPORTANT(i) Difficult(d) Communication(c) RECOMMENDATE(r) Tool(t) Habit(h) noexport(n) Share (s) BLOG(b)
-#+SEQ_TODO: TODO HALF ASSIGN | DONE BYPASS DELEGATE CANCELED DEFERRED
-#+DRAWERS: HIDDEN CODE CONF EMAIL WEBPAGE SNIP
+#+TITLE:  Git CheatSheet
+#+DESCRIPTION: 
+#+KEYWORDS: 
+#+AUTHOR: Denny Zhang
+#+EMAIL:  denny@dennyzhang.com
+#+TAGS: noexport(n)
 #+PRIORITIES: A D C
-#+ARCHIVE: %s_done::** Finished Tasks
-#+AUTHOR: dennyzhang.com (denny@dennyzhang.com)
-#+OPTIONS: toc:2 \n:t ^:nil creator:nil d:nil
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+EXPORT_EXCLUDE_TAGS: exclude noexport
+#+SEQ_TODO: TODO HALF ASSIGN | DONE BYPASS DELEGATE CANCELED DEFERRED
+#+LINK_UP:   
+#+LINK_HOME: 
+* Summary
+#+BEGIN_HTML
+<a href="https://www.linkedin.com/in/dennyzhang001"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/linkedin.png" alt="linkedin" /></a>
+<a href="https://github.com/DennyZhang"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/github.png" alt="github" /></a>
+<a href="https://www.dennyzhang.com/slack" target="_blank" rel="nofollow"><img src="http://slack.dennyzhang.com/badge.svg" alt="slack"/></a>
+<a href="https://github.com/DennyZhang"><img align="right" width="200" height="183" src="https://www.dennyzhang.com/wp-content/uploads/denny/watermark/github.png" /></a>
+
+<br/><br/>
+
+<a href="http://makeapullrequest.com" target="_blank" rel="nofollow"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"/></a>
+#+END_HTML
+
+File me [[https://github.com/DennyZhang/cheatsheet-git-A4/issues][Issues]] or star [[https://github.com/DennyZhang/cheatsheet-git-A4][this repo]].
+
+See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][#denny-cheatsheets]]
+
+* GitHub
+
+| Name                                | Comment                                                               |
+|-------------------------------------+-----------------------------------------------------------------------|
+| Generate link for a code block      | [[https://www.dennyzhang.com/github_wiki#sec-1-3][link]]                                                                  |
+| Git clone wiki                      | [[https://www.dennyzhang.com/github_wiki#sec-1-1][link]]                                                                  |
+| Generate TOC                        | [[https://www.dennyzhang.com/github_wiki#sec-1-2][gh-md-toc]]                                                             |
+| Github Shortcut                     | [[https://help.github.com/articles/using-keyboard-shortcuts][link]]                                                                  |
+| Compare two revision                | [[https://www.dennyzhang.com/github_wiki#sec-1-4][https://github.com/…/…/compare/sha1…sha2]]                              |
+| Compare master for latest 3 commits | https://github.com/DennyZhang/cheatsheet-git-a4/compare/HEAD~3...HEAD |
+
+* Git
+| Name                                           | Comment |
+|------------------------------------------------+---------|
+| squash multiple comments to make history clean | [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]]    |
+
+* More Resources
+https://github.com/git-tips/tips
+
+License: Code is licensed under [[https://www.dennyzhang.com/wp-content/mit_license.txt][MIT License]].
+#+BEGIN_HTML
+<a href="https://www.dennyzhang.com"><img align="right" width="201" height="268" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/denny_201706.png"></a>
+
+<a href="https://www.dennyzhang.com"><img align="right" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
+#+END_HTML
 * DONE git squash
   CLOSED: [2018-07-16 Mon 17:06]
 https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit
@@ -29,6 +75,13 @@ Helpful hint: You can always edit your last commit message, before pushing, by u
 
 $ git commit --amend
 #+END_EXAMPLE
+* TODO [#A] github load org-mode file
+https://github.com/dennyzhang/cheatsheet-knative-A4
+** avoid sections
+** avoid separators
+https://stackoverflow.com/questions/16017206/how-can-i-make-emacs-org-docs-more-beautiful-in-github-repository
+https://github.com/wallyqs/org-ruby
+https://github.com/novoid/github-orgmode-tests
 * TODO github generate http link for two commits
 * #  --8<-------------------------- separator ------------------------>8-- :noexport:
 * TODO How to undo a git pull?
