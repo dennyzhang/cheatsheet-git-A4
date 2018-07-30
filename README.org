@@ -13,7 +13,7 @@
 #+SEQ_TODO: TODO HALF ASSIGN | DONE BYPASS DELEGATE CANCELED DEFERRED
 #+LINK_UP:   
 #+LINK_HOME: 
-* Summary
+* CheatSheet
 #+BEGIN_HTML
 <a href="https://www.linkedin.com/in/dennyzhang001"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/linkedin.png" alt="linkedin" /></a>
 <a href="https://github.com/DennyZhang"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/github.png" alt="github" /></a>
@@ -29,21 +29,21 @@ File me [[https://github.com/DennyZhang/cheatsheet-git-A4/issues][Issues]] or st
 
 See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][#denny-cheatsheets]]
 
-* GitHub
+** GitHub
 
-| Name                                | Comment                                                               |
-|-------------------------------------+-----------------------------------------------------------------------|
-| Generate link for a code block      | [[https://www.dennyzhang.com/github_wiki#sec-1-3][link]]                                                                  |
-| Git clone wiki                      | [[https://www.dennyzhang.com/github_wiki#sec-1-1][link]]                                                                  |
-| Generate TOC                        | [[https://www.dennyzhang.com/github_wiki#sec-1-2][gh-md-toc]]                                                             |
-| Github Shortcut                     | [[https://help.github.com/articles/using-keyboard-shortcuts][link]]                                                                  |
-| Compare two revision                | [[https://www.dennyzhang.com/github_wiki#sec-1-4][https://github.com/…/…/compare/sha1…sha2]]                              |
-| Compare master for latest 3 commits | https://github.com/DennyZhang/cheatsheet-git-a4/compare/HEAD~3...HEAD |
+ | Name                                | Comment                                                               |
+ |-------------------------------------+-----------------------------------------------------------------------|
+ | Generate link for a code block      | [[https://www.dennyzhang.com/github_wiki#sec-1-3][link]]                                                                  |
+ | Git clone wiki                      | [[https://www.dennyzhang.com/github_wiki#sec-1-1][link]]                                                                  |
+ | Generate TOC                        | [[https://www.dennyzhang.com/github_wiki#sec-1-2][gh-md-toc]]                                                             |
+ | Github Shortcut                     | [[https://help.github.com/articles/using-keyboard-shortcuts][link]]                                                                  |
+ | Compare two revision                | [[https://www.dennyzhang.com/github_wiki#sec-1-4][https://github.com/…/…/compare/sha1…sha2]]                              |
+ | Compare master for latest 3 commits | https://github.com/DennyZhang/cheatsheet-git-a4/compare/HEAD~3...HEAD |
 
-* Git
-| Name                                           | Comment |
-|------------------------------------------------+---------|
-| squash multiple comments to make history clean | [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]]    |
+** Git
+ | Name                                           | Comment |
+ |------------------------------------------------+---------|
+ | Squash multiple comments to make history clean | [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]]    |
 
 * More Resources
 https://github.com/git-tips/tips
