@@ -1,5 +1,5 @@
 * org-mode configuration                                           :noexport:
-#+STARTUP: overview customtime noalign logdone hidestars
+#+STARTUP: overview customtime noalign logdone showall
 #+TITLE:  Git CheatSheet
 #+DESCRIPTION: 
 #+KEYWORDS: 
@@ -28,22 +28,25 @@
 File me [[https://github.com/DennyZhang/cheatsheet-git-A4/issues][Issues]] or star [[https://github.com/DennyZhang/cheatsheet-git-A4][this repo]].
 
 See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][#denny-cheatsheets]]
-
 ** GitHub
-
- | Name                                | Comment                                                               |
- |-------------------------------------+-----------------------------------------------------------------------|
- | Generate link for a code block      | [[https://www.dennyzhang.com/github_wiki#sec-1-3][link]]                                                                  |
- | Git clone wiki                      | [[https://www.dennyzhang.com/github_wiki#sec-1-1][link]]                                                                  |
- | Generate TOC                        | [[https://www.dennyzhang.com/github_wiki#sec-1-2][gh-md-toc]]                                                             |
- | Github Shortcut                     | [[https://help.github.com/articles/using-keyboard-shortcuts][link]]                                                                  |
- | Compare two revision                | [[https://www.dennyzhang.com/github_wiki#sec-1-4][https://github.com/…/…/compare/sha1…sha2]]                              |
- | Compare master for latest 3 commits | https://github.com/DennyZhang/cheatsheet-git-a4/compare/HEAD~3...HEAD |
-
+| Name                                | Comment                                                               |
+|-------------------------------------+-----------------------------------------------------------------------|
+| Generate link for a code block      | [[https://www.dennyzhang.com/github_wiki#sec-1-3][link]]                                                                  |
+| Git clone wiki                      | [[https://www.dennyzhang.com/github_wiki#sec-1-1][link]]                                                                  |
+| Generate TOC                        | [[https://www.dennyzhang.com/github_wiki#sec-1-2][gh-md-toc]]                                                             |
+| Github Shortcut                     | [[https://help.github.com/articles/using-keyboard-shortcuts][link]]                                                                  |
+| Compare two revision                | [[https://www.dennyzhang.com/github_wiki#sec-1-4][https://github.com/…/…/compare/sha1…sha2]]                              |
+| Compare master for latest 3 commits | https://github.com/DennyZhang/cheatsheet-git-a4/compare/HEAD~3...HEAD |
 ** Git
- | Name                                           | Comment |
- |------------------------------------------------+---------|
- | Squash multiple comments to make history clean | [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]]    |
+| Name                                           | Comment                                          |
+|------------------------------------------------+--------------------------------------------------|
+| Squash multiple comments to make history clean | [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]]                                             |
+| List all remote git branches                   | =git ls-remote --heads origin=                   |
+| Git diff two revision                          | =git diff ${sha1sum}..${sha2sum}=                |
+| Git show file changes                          | =git diff --name-only ${sha1sum} ${sha2sum}=     |
+| Git list all tags                              | =git ls-remote --tags=                           |
+| Git Fetch all tags                             | =git fetch --tags; git checkout tags/<tag_name>= |
+| Show git config                                | =git config --global/system=                     |
 
 * More Resources
 https://github.com/git-tips/tips
@@ -86,14 +89,11 @@ https://github.com/novoid/github-orgmode-tests
 | 删除server一个branch                | git push origin --delete <branchName>                                                                  |
 | 合并branch                          | git merge <branchname>                                                                                 |
 | 查看某个check-in的修改              | git diff  ed3563a9538a183cb1e545458691ea6f626db898                                                     |
-| diff two revision                   | git diff 4d1c375e281627a7ea45b0b3abad08af51927851..3d2738a94649d444bd69c67cf1431e4693f33cf9            |
-| show file changes                   | git diff --name-only 9ee912afe75bf8b4a343b77edfebf5b9f5291dd7 4d1c375e281627a7ea45b0b3abad08af51927851 |
 | git checkout file of given revision | git checkout 4d1c375e281627a7ea45b0b3abad08af51927851 server.py                                        |
 
 - git branch
 | git                          | svn                            | comment                               |
 |------------------------------+--------------------------------+---------------------------------------|
-| git ls-remote --heads origin |                                |                                       |
 | git branch branch            | svn copy http://... http://... | BRANCHING                             |
 | git checkout branch          | svn switch http://...          |                                       |
 | git branch                   | svn list http://.../           |                                       |
@@ -102,11 +102,6 @@ https://github.com/novoid/github-orgmode-tests
 | git checkout path            |                                | Restore a file from the last revision |
 | git merge branch             |                                |                                       |
 | git push -u origin dev       |                                | push a local branch to server         |
-
-- git tag
-| Name                                           | Comment |
-|------------------------------------------------+---------|
-| git fetch --tags; git checkout tags/<tag_name> |         |
 
 - git diff
 | Name                   | Comment                            |
@@ -123,17 +118,13 @@ https://github.com/novoid/github-orgmode-tests
 | git tag -a sandbox-v2 -m "sandbox v2"          | svn copy http://... http://... |                                       |
 |------------------------------------------------+--------------------------------+---------------------------------------|
 | git tag -l                                     | svn list http://.../           | list local tags                       |
-| git ls-remote --tags                           |                                | list remote tags                      |
 | git push --tags                                |                                | push tag                              |
 | git show tag                                   | svn log --limit 1 http://...   |                                       |
-|------------------------------------------------+--------------------------------+---------------------------------------|
 | git init                                       |                                | initialize the repository             |
 | git add .                                      |                                | add all files under current directory |
 | git show rev:path/to/file                      |                                |                                       |
 | git blame path/to/file                         |                                |                                       |
 | git diff rev path                              | svn diff -rrev path            |                                       |
-|------------------------------------------------+--------------------------------+---------------------------------------|
-| git config --global/system                     |                                |                                       |
 ** DONE [#A] setup git repo for mdmdevops-totvslabs: remote       :IMPORTANT:
    CLOSED: [2016-07-27 Wed 10:43]
 
@@ -1491,3 +1482,6 @@ https://stackoverflow.com/questions/38255655/trying-to-pull-files-from-my-github
   * branch            denny-docker-sandbox -> FETCH_HEAD
  fatal: refusing to merge unrelated histories
 ** TODO git pushd
+* TODO undo local git commit                                       :noexport:
+* #  --8<-------------------------- separator ------------------------>8-- :noexport:
+* TODO Truncate .git /Users/zdenny/Dropbox/org_data                :noexport:
