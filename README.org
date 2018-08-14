@@ -1,24 +1,15 @@
-* org-mode configuration                                           :noexport:
-#+STARTUP: overview customtime noalign logdone showall
-#+TITLE:  Git CheatSheet
-#+DESCRIPTION: 
-#+KEYWORDS: 
-#+AUTHOR: Denny Zhang
-#+EMAIL:  denny@dennyzhang.com
-#+TAGS: noexport(n)
-#+PRIORITIES: A D C
-#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+EXPORT_EXCLUDE_TAGS: exclude noexport
-#+SEQ_TODO: TODO HALF ASSIGN | DONE BYPASS DELEGATE CANCELED DEFERRED
-#+LINK_UP:   
-#+LINK_HOME: 
-* CheatSheet
+* Git CheatSheet                                                      :Tools:
+:PROPERTIES:
+:type:     git
+:END:
+
+Blog URL: https://cheatsheet.dennyzhang.com/cheatsheet-git, Category: [[https://cheatsheet.dennyzhang.com/category/tools/][tools]]
+
 #+BEGIN_HTML
 <a href="https://www.linkedin.com/in/dennyzhang001"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/linkedin.png" alt="linkedin" /></a>
 <a href="https://github.com/DennyZhang"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/github.png" alt="github" /></a>
-<a href="https://www.dennyzhang.com/slack" target="_blank" rel="nofollow"><img src="http://slack.dennyzhang.com/badge.svg" alt="slack"/></a>
-<a href="https://github.com/DennyZhang"><img align="right" width="200" height="183" src="https://www.dennyzhang.com/wp-content/uploads/denny/watermark/github.png" /></a>
+<a href="https://www.dennyzhang.com/slack" target="_blank" rel="nofollow"><img src="https://slack.dennyzhang.com/badge.svg" alt="slack"/></a>
+<a href="https://github.com/DennyZhang/cheatsheet-git-A4"><img align="right" width="200" height="183" src="https://www.dennyzhang.com/wp-content/uploads/denny/watermark/github.png" /></a>
 
 <br/><br/>
 
@@ -35,7 +26,7 @@ See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][
 | Git clone wiki                      | [[https://www.dennyzhang.com/github_wiki#sec-1-1][link]]                                                                  |
 | Generate TOC                        | [[https://www.dennyzhang.com/github_wiki#sec-1-2][gh-md-toc]]                                                             |
 | Github Shortcut                     | [[https://help.github.com/articles/using-keyboard-shortcuts][link]]                                                                  |
-| Compare two revision                | [[https://www.dennyzhang.com/github_wiki#sec-1-4][https://github.com/…/…/compare/sha1…sha2]]                              |
+| Compare two revision                | [[https://www.dennyzhang.com/github_wiki#sec-1-4][https://github.com/.../.../compare/sha1...sha2]]                        |
 | Compare master for latest 3 commits | https://github.com/DennyZhang/cheatsheet-git-a4/compare/HEAD~3...HEAD |
 ** Git
 | Name                                           | Comment                                          |
@@ -48,15 +39,33 @@ See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][
 | Git Fetch all tags                             | =git fetch --tags; git checkout tags/<tag_name>= |
 | Show git config                                | =git config --global/system=                     |
 
-* More Resources
+** More Resources
 https://github.com/git-tips/tips
 
 License: Code is licensed under [[https://www.dennyzhang.com/wp-content/mit_license.txt][MIT License]].
 #+BEGIN_HTML
 <a href="https://www.dennyzhang.com"><img align="right" width="201" height="268" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/denny_201706.png"></a>
-
 <a href="https://www.dennyzhang.com"><img align="right" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
+
+<a href="https://www.linkedin.com/in/dennyzhang001"><img align="bottom" src="https://www.dennyzhang.com/wp-content/uploads/sns/linkedin.png" alt="linkedin" /></a>
+<a href="https://github.com/DennyZhang"><img align="bottom"src="https://www.dennyzhang.com/wp-content/uploads/sns/github.png" alt="github" /></a>
+<a href="https://www.dennyzhang.com/slack" target="_blank" rel="nofollow"><img align="bottom" src="https://slack.dennyzhang.com/badge.svg" alt="slack"/></a>
 #+END_HTML
+* org-mode configuration                                           :noexport:
+#+STARTUP: overview customtime noalign logdone showall
+#+TITLE:  Git CheatSheet
+#+DESCRIPTION: 
+#+KEYWORDS: 
+#+AUTHOR: Denny Zhang
+#+EMAIL:  denny@dennyzhang.com
+#+TAGS: noexport(n)
+#+PRIORITIES: A D C
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+EXPORT_EXCLUDE_TAGS: exclude noexport
+#+SEQ_TODO: TODO HALF ASSIGN | DONE BYPASS DELEGATE CANCELED DEFERRED
+#+LINK_UP:   
+#+LINK_HOME: 
 * #  --8<-------------------------- separator ------------------------>8-- :noexport:
 * [#A] github load org-mode file                              :noexport:
 https://github.com/dennyzhang/cheatsheet-knative-A4
@@ -1485,3 +1494,5 @@ https://stackoverflow.com/questions/38255655/trying-to-pull-files-from-my-github
 * TODO undo local git commit                                       :noexport:
 * #  --8<-------------------------- separator ------------------------>8-- :noexport:
 * TODO Truncate .git /Users/zdenny/Dropbox/org_data                :noexport:
+* TODO git reset --hard HEAD                                       :noexport:
+* TODO use git submodule                                           :noexport:
