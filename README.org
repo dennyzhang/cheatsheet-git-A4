@@ -20,6 +20,22 @@ Blog URL: https://cheatsheet.dennyzhang.com/cheatsheet-git, Category: [[https://
 File me [[https://github.com/DennyZhang/cheatsheet-git-A4/issues][Issues]] or star [[https://github.com/DennyZhang/cheatsheet-git-A4][this repo]].
 
 See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][#denny-cheatsheets]]
+** Git General
+| Name                                           | Comment                                                        |
+|------------------------------------------------+----------------------------------------------------------------|
+| Squash multiple comments to make history clean | git rebase -i HEAD~4; git push origin branch-name --force [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]] |
+| List all remote git branches                   | =git ls-remote --heads origin=                                 |
+| Git diff two revision                          | =git diff ${sha1sum}..${sha2sum}=                              |
+| Git show file changes                          | =git diff --name-only ${sha1sum} ${sha2sum}=                   |
+| Show git config                                | =git config --global/system=                                   |
+** Git Tag
+| Name                  | Comment                                          |
+|-----------------------+--------------------------------------------------|
+| Git list all tags     | =git ls-remote --tags=                           |
+| Git Fetch all tags    | =git fetch --tags; git checkout tags/<tag_name>= |
+| Git delete local tag  | =git tag -d <tag_name>=                          |
+| Git delete remote tag | =git push --delete origin <tag_name>= [[url-external:https://stackoverflow.com/questions/5480258/how-to-delete-a-git-remote-tag][link]] |
+
 ** GitHub
 | Name                                | Comment                                                               |
 |-------------------------------------+-----------------------------------------------------------------------|
@@ -29,16 +45,6 @@ See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][
 | Github Shortcut                     | [[https://help.github.com/articles/using-keyboard-shortcuts][link]]                                                                  |
 | Compare two revision                | [[https://www.dennyzhang.com/github_wiki#sec-1-4][https://github.com/.../.../compare/sha1...sha2]]                        |
 | Compare master for latest 3 commits | https://github.com/dennyzhang/cheatsheet-git-a4/compare/HEAD~3...HEAD |
-** Git
-| Name                                           | Comment                                          |
-|------------------------------------------------+--------------------------------------------------|
-| Squash multiple comments to make history clean | [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]]                                             |
-| List all remote git branches                   | =git ls-remote --heads origin=                   |
-| Git diff two revision                          | =git diff ${sha1sum}..${sha2sum}=                |
-| Git show file changes                          | =git diff --name-only ${sha1sum} ${sha2sum}=     |
-| Git list all tags                              | =git ls-remote --tags=                           |
-| Git Fetch all tags                             | =git fetch --tags; git checkout tags/<tag_name>= |
-| Show git config                                | =git config --global/system=                     |
 
 ** More Resources
 https://github.com/git-tips/tips
