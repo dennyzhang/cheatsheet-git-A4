@@ -23,18 +23,35 @@ See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][
 ** Git General
 | Name                                           | Comment                                                        |
 |------------------------------------------------+----------------------------------------------------------------|
-| Squash multiple comments to make history clean | git rebase -i HEAD~4; git push origin branch-name --force [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]] |
 | List all remote git branches                   | =git ls-remote --heads origin=                                 |
 | Git diff two revision                          | =git diff ${sha1sum}..${sha2sum}=                              |
 | Git show file changes                          | =git diff --name-only ${sha1sum} ${sha2sum}=                   |
 | Show git config                                | =git config --global/system=                                   |
+** Git Commit
+| Name                                           | Comment                                                            |
+|------------------------------------------------+--------------------------------------------------------------------|
+| Squash multiple comments to make history clean | =git rebase -i HEAD~4=; =git push origin branch-name --force= [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]] |
+
 ** Git Tag
 | Name                  | Comment                                          |
 |-----------------------+--------------------------------------------------|
 | Git list all tags     | =git ls-remote --tags=                           |
 | Git Fetch all tags    | =git fetch --tags; git checkout tags/<tag_name>= |
 | Git delete local tag  | =git tag -d <tag_name>=                          |
-| Git delete remote tag | =git push --delete origin <tag_name>= [[url-external:https://stackoverflow.com/questions/5480258/how-to-delete-a-git-remote-tag][link]] |
+| Git delete remote tag | =git push --delete origin <tag_name>= [[https://stackoverflow.com/questions/5480258/how-to-delete-a-git-remote-tag][link]]       |
+
+** Git Branch
+| Name                 | Comment                                  |
+|----------------------+------------------------------------------|
+| Show remote branch   | =git ls-remote --heads origin=           |
+| Delete local branch  | =git branch -d <branch_name>=            |
+| Delete remote branch | =git push origin --delete <branch_name>= |
+
+** Git Submodule
+| Name                           | Comment                            |
+|--------------------------------+------------------------------------|
+| Git add a repo to current repo | =git submodule add <git_repo_url>= |
+| Update submodule               | =git submodule update=             |
 
 ** GitHub
 | Name                                | Comment                                                               |
@@ -966,122 +983,6 @@ Exception: Could not connect to gerrit at ssh://denny@review.ustack.com:29418/sa
 #+end_example
 ** DONE git repository separation                                  :noexport:
    CLOSED: [2013-09-10 Tue 16:42]
-*** wiki in untedstack
-#+begin_example
-skip to content
-
-UnitedStack Team Wiki
-User Tools
-Logged in as: Denny Zhang (denny)AdminUpdate ProfileLogout
-Site Tools
-
-Recent changesMedia ManagerSitemap
-Trace: • start • gerrit_的使用和常用的_git_workflow • competitive_products • using_git • git_manage_nest_repo
-New release available: 2013-05-10 "Weatherwax". upgrade now! [40] (what's this?)
-New release candidate available: 2013-03-06 "Weatherwax" RC1. upgrade now! [39] (what's this?)
-git_manage_nest_repo
-Table of Contents
-Problem Descriptin
-Possible Solutions
-Suggest Solution: git subtree
-Problem Descriptin
-一个git repo中有些文件夹来自于其它git repo。
-
-如何维护好这个git依赖，同时尽可能地降低人工操作？
-
-
-Possible Solutions
-git submodule :
-
-原理: 每个外部repo是一个submodule
-
-点评：使用时太多注意事项，极易忘记一些操作，导致状态混乱。
-
-例如：pull时忘记update submodule; commit -a时加错文件; 不在master分支时，容易出现HEAD状态紊乱。
-
- http://blog.cnrainbird.com/index.php/2012/05/31/guan_yu_git_de_submodule/
- 关于git的submodule的使用,微博分享工具 | Rainbird的个人博客
- http://webfrogs.me/2013/03/20/git-submodule/
- git submodule的使用 | webfrogs
- http://somethingsinistral.net/blog/git-submodules-are-probably-not-the-answer/
- Git submodules are probably not the answer
- http://www.cocoachina.com/applenews/devnews/2013/0509/6161.html
- Git Submodule的坑
-git subtree :
-
-原理：通过git本身提供的subtree merge功能实现
-
-点评：比git submodule用法简单不少，缺点是依赖repo的文件也会被checkout出来，提交在原repo中。
-
-该缺点，除占用一些多余磁盘空间外，影响不大。
-
- http://makingsoftware.wordpress.com/2013/02/16/using-git-subtrees-for-repository-separation/
- Using Git subtrees for repository separation &#8211; Making Software
- https://github.com/apenwarr/git-subtree/blob/master/git-subtree.txt
- git-subtree/git-subtree.txt at master · apenwarr/git-subtree · GitHub
- http://h2ik.co/2011/03/having-fun-with-git-subtree/
- Having Fun With Git Subtree | h2ik
- http://blogs.atlassian.com/2013/05/alternatives-to-git-submodule-git-subtree/
- Alternatives To Git Submodule: Git Subtree | Atlassian Blogs
-google repo :
-
-原理：通过提供一个外部工具来自动checkout相关repo，与erlang的rebar方式相似。
-
-点评：此法过于冷门，使用的人少。提供一个命令rep, 与标准git差异过大。对本问题不推荐使用
-
- https://code.google.com/p/git-repo/
- git-repo -repo - The multiple repository tool - Google Project Hosting
- http://source.android.com/source/developing.html
- Developing | Android Developers
-git external repo :
-
-原理：人工去git clone某个repo作为本地文件夹。
-
-点评：一个git repo只会有一个.git文件夹。即此法，别人在git clone本repo后，还需要一些手工操作。
-
-示例：
-cd ~/puppet
-git pull production
-git checkout -b super_project_py_dev
-cd modules/public/package/manifests/virtual/
-vi ubuntu.pp
-git commit -am "add python3-dev package"
-cd ~/puppet/modules/internal/group/manifests
-vi linux.pp
-git commit -am "Add python3?-dev packages to linux group"
-git push origin super_project_py_dev
-gitslave :
-
-原理：将一个git操作转化为多个repo的单独操作。例如gitslave commit, 即去每个repo做git commit。
-
-点评：使用人少，做的额外事情有些多。不建议使用。
-
- http://gitslave.sourceforge.net
- Gitslave&mdash;gits
-
-Suggest Solution: git subtree
-通过git subtree来维护repository separation
-
-示例:
-
-# checkout一个外部repo，作为本地的一个文件夹
-git remote add -f emacs https://github.com/dennyzhang/Denny-s-emacs-configuration.git
-git subtree add --prefix emacscnf emacs master --squash
-# update repo: 向该外部repo push修改
-git fetch emacs master
-git subtree pull --prefix emacscnf emacs master --squash
-
-git_manage_nest_repo.txt · Last modified: 2013/09/11 05:35 by denny
-Page Tools
-Edit this page
-Old revisions
-Backlinks
-Manage Subscriptions
-Back to top
-Except where otherwise noted, content on this wiki is licensed under the following license: CC Attribution-Share Alike 3.0 Unported
-
-
-#+end_example
 *** git submodule
 git submodule  add https://github.com/dennyzhang/Denny-s-emacs-configuration.git Submodules/emacs-conf
 
@@ -1097,10 +998,6 @@ https://code.google.com/p/git-repo/
 http://source.android.com/source/developing.html
 *** GitSlave
 http://gitslave.sourceforge.net
-** DONE git submodule
-   CLOSED: [2015-01-16 Fri 16:44]
-git submodule add git@github.com:DennyZhang/chef-jenkins-xcode.git cookbooks/chef-jenkins-xcode
-git submodule update
 ** DONE [#A] git: How to complete a git clone for a big project on an unstable connection?
    CLOSED: [2015-07-28 Tue 11:30]
 git clone --depth 1 git@bitbucket.org:authright/iam.git --branch dev --single-branch
@@ -1121,8 +1018,6 @@ cd /tmp/tmp2 && git clone git@bitbucket.org:authright/iam.git
 http://stackoverflow.com/questions/3954852/how-to-complete-a-git-clone-for-a-big-project-on-an-unstable-connection
 http://stackoverflow.com/questions/14738219/how-to-resume-a-git-pull-clone-after-a-hung-up-unexpectedly
 #+END_EXAMPLE
-** DONE git show remote branch: git ls-remote --heads origin
-   CLOSED: [2016-06-02 Thu 07:43]
 ** DONE rollback a git merge
    CLOSED: [2016-07-23 Sat 22:43]
 http://stackoverflow.com/questions/7099833/how-to-revert-a-merge-commit-thats-already-pushed-to-remote-branch
@@ -1132,9 +1027,6 @@ Here's a complete example in the hope that it helps someone:
 git revert -m 1 <commit-hash>
 git commit -m "Reverting the last commit which messed the repo."
 git push -u origin master
-** DONE delete github branch: delete local, then in gui
-   CLOSED: [2014-08-04 Mon 13:17]
-https://help.github.com/articles/creating-and-deleting-branches-within-your-repository
 ** DONE git command: for a given file, compare with previous version: git diff HEAD^ default.rb
    CLOSED: [2015-05-23 Sat 04:59]
 http://stackoverflow.com/questions/2428270/git-how-to-diff-changed-files-versus-previous-versions-after-a-pull
@@ -1317,84 +1209,6 @@ Trigger hook for penroz repo:
 https://bitbucket.org/nubesecure/penroz/addon/pipelines/home#!/results/branch/images/page/1
 
 58MB: penroz/iamsvc/build/libs/iamsvc-1.0.0-SNAPSHOT.jar
-*** [#A] Removes large or troublesome blobs: bfg --strip-blobs-bigger-than 50M .git
-https://rtyley.github.io/bfg-repo-cleaner/#usage
-
-#+BEGIN_EXAMPLE
-Denny-mac:dofacdenny mac$  bfg --strip-blobs-bigger-than 50M .git
-
-Using repo : /Users/mac/backup/soteria_code/dofacdenny/.git
-
-Scanning packfile for large blobs: 324
-Scanning packfile for large blobs completed in 46 ms.
-Found 1 blob ids for large blobs - biggest=60886466 smallest=60886466
-Total size (unpacked)=60886466
-Found 123 objects to protect
-Found 6 commit-pointing refs : HEAD, refs/heads/docker-images, refs/heads/master, ...
-
-Protected commits
------------------
-
-These are your protected commits, and so their contents will NOT be altered:
-
- * commit 26f7fc88 (protected by 'HEAD')
-
-Cleaning
---------
-
-Found 64 commits
-Cleaning commits:       100% (64/64)
-Cleaning commits completed in 352 ms.
-
-Updating 4 Refs
----------------
-
-	Ref                                 Before     After
-	-------------------------------------------------------
-	refs/heads/docker-images          | f7f91565 | 4156ab97
-	refs/heads/master                 | 26f7fc88 | e2b43e21
-	refs/remotes/origin/docker-images | 15e48e20 | 65333e26
-	refs/remotes/origin/master        | 26f7fc88 | e2b43e21
-
-Updating references:    100% (4/4)
-...Ref update completed in 34 ms.
-
-Commit Tree-Dirt History
-------------------------
-
-	Earliest                                              Latest
-	|                                                          |
-	...............DDDDDDDDDDDDDDDmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-
-	D = dirty commits (file tree fixed)
-	m = modified commits (commit message or parents changed)
-	. = clean commits (no changes to file tree)
-
-	                        Before     After
-	-------------------------------------------
-	First modified commit | d2830d9b | 656b7d51
-	Last dirty commit     | e1fda269 | e44f612f
-
-Deleted files
--------------
-
-	Filename                    Git id
-	----------------------------------------------
-	iamsvc-1.0.0-SNAPSHOT.jar | 79016987 (58.1 MB)
-
-
-In total, 80 object ids were changed. Full details are logged here:
-
-	/Users/mac/backup/soteria_code/dofacdenny/.git.bfg-report/2017-02-02/22-54-53
-
-BFG run is complete! When ready, run: git reflog expire --expire=now --all && git gc --prune=now --aggressive
-Denny-mac:dofacdenny mac$ git reflog expire --expire=now --all && git gc --prune=now --aggressive
-Counting objects: 668, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (585/585), done.
-Writing objects: 100% (668/668), done.
-Total 668 (delta 213), reused 184 (delta 0)
-#+END_EXAMPLE
 *** git-filter-branch
 *** DONE install bfg in ubuntu
     CLOSED: [2017-02-09 Thu 16:06]
@@ -1451,28 +1265,6 @@ fatal: revert failed
 ** DONE git pull: fatal: refusing to merge unrelated histories: --allow-unrelated-histories
    CLOSED: [2017-11-08 Wed 17:26]
 https://stackoverflow.com/questions/38255655/trying-to-pull-files-from-my-github-repository-refusing-to-merge-unrelated-his
-
-** DONE git squash
-   CLOSED: [2018-07-16 Mon 17:06]
- https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit
-
- Squash All Commits Related to a Single Issue into a Single Commit · todotxt/todo.txt-android Wiki · GitHub
-
- #+BEGIN_EXAMPLE
- Once you have rebased your work on top of the latest state of the upstream master, you may have several commits related to the issue you were working on. Once everything is done, squash them into a single commit with a descriptive message, like "Issue #100: Retweet bugfix."
-
- To squash four commits into one, do the following:
-
- $ git rebase -i HEAD~4
- In the text editor that comes up, replace the words "pick" with "squash" next to the commits you want to squash into the commit before it. Save and close the editor, and git will combine the "squash"'ed commits with the one before it. Git will then give you the opportunity to change your commit message to something like, "Issue #100: Fixed retweet bug."
-
- Important: If you've already pushed commits to GitHub, and then squash them locally, you will have to force the push to your branch.
-
- $ git push origin branch-name --force
- Helpful hint: You can always edit your last commit message, before pushing, by using:
-
- $ git commit --amend
- #+END_EXAMPLE
 ** TODO github generate http link for two commits
 ** #  --8<-------------------------- separator ------------------------>8-- :noexport:
 ** TODO How to undo a git pull?
@@ -1502,4 +1294,6 @@ https://stackoverflow.com/questions/38255655/trying-to-pull-files-from-my-github
 * #  --8<-------------------------- separator ------------------------>8-- :noexport:
 * TODO Truncate .git /Users/zdenny/Dropbox/org_data                :noexport:
 * TODO git reset --hard HEAD                                       :noexport:
-* TODO use git submodule                                           :noexport:
+* TODO Role Model                                                  :noexport:
+https://github.com/tiimgreen/github-cheat-sheet
+* TODO make .git history small                                     :noexport:
