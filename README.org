@@ -20,6 +20,9 @@ Blog URL: https://cheatsheet.dennyzhang.com/cheatsheet-git, Category: [[https://
 File me [[https://github.com/DennyZhang/cheatsheet-git-A4/issues][Issues]] or star [[https://github.com/DennyZhang/cheatsheet-git-A4][this repo]].
 
 See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][#denny-cheatsheets]]
+
+[[https://github.com/dennyzhang/cheatsheet-git-A4/blob/master/misc/git_workflow.png][Git Workflow]]
+
 ** Git General
 | Name                                           | Comment                                                        |
 |------------------------------------------------+----------------------------------------------------------------|
@@ -31,6 +34,15 @@ See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][
 | Name                                           | Comment                                                            |
 |------------------------------------------------+--------------------------------------------------------------------|
 | Squash multiple comments to make history clean | =git rebase -i HEAD~4=; =git push origin branch-name --force= [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]] |
+| Git commit                                     | =git commit -m "XXX"=                                              |
+| Git add and commit                             | =git ci -m "XXX"=                                                  |
+
+** Compare Changes
+| Name                                  | Comment                                                                     |
+|---------------------------------------+-----------------------------------------------------------------------------|
+| Compare two branches in CLI           | =git diff <branch_1>..<branch_2>= Make sure you have those branches locally |
+| Compare two revision in GitHub UI     | [[https://www.dennyzhang.com/github_wiki#sec-1-4][https://github.com/.../.../compare/sha1...sha2]]                              |
+| Compare latest 3 commits in GitHub UI | https://github.com/dennyzhang/cheatsheet-git-a4/compare/HEAD~3...HEAD       |
 
 ** Git Tag
 | Name                  | Comment                                          |
@@ -54,14 +66,12 @@ See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][
 | Update submodule               | =git submodule update=             |
 
 ** GitHub
-| Name                                | Comment                                                               |
-|-------------------------------------+-----------------------------------------------------------------------|
-| Generate link for a code block      | [[https://www.dennyzhang.com/github_wiki#sec-1-3][link]]                                                                  |
-| Git clone wiki                      | [[https://www.dennyzhang.com/github_wiki#sec-1-1][link]]                                                                  |
-| Generate TOC                        | [[https://www.dennyzhang.com/github_wiki#sec-1-2][gh-md-toc]]                                                             |
-| Github Shortcut                     | [[https://help.github.com/articles/using-keyboard-shortcuts][link]]                                                                  |
-| Compare two revision                | [[https://www.dennyzhang.com/github_wiki#sec-1-4][https://github.com/.../.../compare/sha1...sha2]]                        |
-| Compare master for latest 3 commits | https://github.com/dennyzhang/cheatsheet-git-a4/compare/HEAD~3...HEAD |
+| Name                           | Comment   |
+|--------------------------------+-----------|
+| Generate link for a code block | [[https://www.dennyzhang.com/github_wiki#sec-1-3][link]]      |
+| Git clone wiki                 | [[https://www.dennyzhang.com/github_wiki#sec-1-1][link]]      |
+| Generate TOC                   | [[https://www.dennyzhang.com/github_wiki#sec-1-2][gh-md-toc]] |
+| Github Shortcut                | [[https://help.github.com/articles/using-keyboard-shortcuts][link]]      |
 
 ** More Resources
 https://github.com/git-tips/tips
@@ -77,6 +87,7 @@ License: Code is licensed under [[https://www.dennyzhang.com/wp-content/mit_lice
 #+END_HTML
 * org-mode configuration                                           :noexport:
 #+STARTUP: overview customtime noalign logdone showall
+#+TITLE:  Git CheatSheet
 #+DESCRIPTION: 
 #+KEYWORDS: 
 #+AUTHOR: Denny Zhang
@@ -188,8 +199,8 @@ mdmdevops-totvslabs/.git/config
 [remote "customer"]
 	url = git@github.com:TOTVS/mdmdevops.git
 	fetch = +refs/heads/*:refs/remotes/customer/*
-** TODO git clone出来的，没有branch list
-** TODO 生成补丁（patch），把补丁发送给主开发者
+** TODO git clone出来的,没有branch list
+** TODO 生成补丁（patch）,把补丁发送给主开发者
 ** TODO git misc stuff                                             :noexport:
 *** TODO git svn fetch failed
 **** console shot                                                  :noexport:
@@ -611,8 +622,8 @@ Resolving deltas: 100% (422/422), done.
  2. create the working dir: mkdir strigi
  3. init your git working dir:
  cd strigi && git-svn init https://svn.kde.org/home/kde/trunk/kdesupport/strigi
- git-svn init command is followed by the address of the svn repository (in this case we point to strigi’s repository)
- 4. Find a commit regarding the project (you can get it from cia version control). Warning: the command git-log will show project’s history starting from this revision.
+ git-svn init command is followed by the address of the svn repository (in this case we point to strigi's repository)
+ 4. Find a commit regarding the project (you can get it from cia version control). Warning: the command git-log will show project's history starting from this revision.
  5. Perform the command git-svn fetch -rREVISION
  Where REVISION is the number obtained before.
  6. Update your working dir: git-svn rebase
@@ -737,7 +748,7 @@ Sent: Thursday, March 04, 2010 10:40 PM
 To: Zhang, Ming; Yin, Caihua; Zhou, Hang; Zhang, Denny; Feng, Longda; Shen, Lizhong
 Cc: Zhao, Yubo; Kang, Sukwoo
 Subject: RE: Review board general process and user guide wiki.
-Right now we only support upload diff from GUI. I will learn to provide a CLI tool for us to easily upload the patch review without access GUI. I know we are all developers… ;)
+Right now we only support upload diff from GUI. I will learn to provide a CLI tool for us to easily upload the patch review without access GUI. I know we are all developers... ;)
 Btw, git format patch is not supported at this time. I will also dig more into RB to have a check. I will update wiki about our on-going status on the improvements.
 Thanks,
 Jason
@@ -788,7 +799,7 @@ Agenda:
 *** email 2
 #+BEGIN_EXAMPLE
 I agree. Git looks cool and powerful for developer if can master it very well while RB is more user friendly and easy to use.
-P.S. RB can support git but I haven’t tried this before. You can have a try on this. I will send out the detail instructions later about setup and manage.
+P.S. RB can support git but I haven't tried this before. You can have a try on this. I will send out the detail instructions later about setup and manage.
 Thanks,
 Jason
 From: Shen, Lizhong [mailto:Shen_lizhong@emc.com]
@@ -881,14 +892,14 @@ Agenda:
 **** DONE git blame, with the help of third party mo-git-blame
      CLOSED: [2010-03-21 星期日 12:05]
   http://www.bunkus.org/blog/2009/10/an-interactive-iterative-git-blame-mode-for-emacs/\\
-  An interactive, iterative ‘git blame’ mode for Emacs
+  An interactive, iterative 'git blame' mode for Emacs
 ** # --8<-------------------------- separator ------------------------>8--
 ** HALF git pull不太像svn up, 并没有拉回被删除的文件, 应该用git checkout ./smarty的类似命令
    /sshx:root@192.168.51.102:/opt/local/bnow/bnow/priv/web
 
    drwxr-xr-x 4 root root 4.0K Nov 28 11:28 smarty
    drwxr-xr-x 2 root root 4.0K Nov 28 11:28 smarty_plugins
-** TODO git提交，但不产生新的提交历史记录
+** TODO git提交,但不产生新的提交历史记录
 ** DONE [#A] git push失败                                         :IMPORTANT:
    CLOSED: [2013-02-25 Mon 17:07]
 export $DISPLAY
@@ -1004,11 +1015,11 @@ git clone --depth 1 git@bitbucket.org:authright/iam.git --branch dev --single-br
 - get current version, instead of all
 
 #+BEGIN_EXAMPLE
-[7/28/15, 12:07:53 AM] denny: As follow up for today’s session share.
+[7/28/15, 12:07:53 AM] denny: As follow up for today's session share.
 
-关于，git clone一个bitbucket/github十分慢的问题。
+关于,git clone一个bitbucket/github十分慢的问题.
 
-git没有断点续传的功能。但一个优化点是：如果你只想checkout某一个branch，那么下面的手段可以把你git clone的操作缩短50%左右。
+git没有断点续传的功能.但一个优化点是:如果你只想checkout某一个branch,那么下面的手段可以把你git clone的操作缩短50%左右.
 [7/28/15, 12:09:34 AM] denny: Run below command for comparison:
 
 cd /tmp/tmp1 && git clone --depth 1 git@bitbucket.org:authright/iam.git --branch dev --single-branch
@@ -1111,16 +1122,16 @@ https://github.com/chef/chef/issues/3025
 #+BEGIN_EXAMPLE
 
 This is the default behavior for the git resource. If you take a look at
-the docs, you’ll see the checkout_branch attribute, whose description
-reads: “Use to specify the name of a branch to be checked out. Default
-value: deploy.”
+the docs, you'll see the checkout_branch attribute, whose description
+reads: "Use to specify the name of a branch to be checked out. Default
+value: deploy."
 
 So, instead of using the revision attribute, you may, instead, want to
 specify the checkout_branch attribute.
 
-What is happening right now is that it’s checking out a branch called
-deploy from the revision you’ve set, but that’s a bit confusing, based on
-what you’re expecting to see.
+What is happening right now is that it's checking out a branch called
+deploy from the revision you've set, but that's a bit confusing, based on
+what you're expecting to see.
 #+END_EXAMPLE
 
 docker stop autoscale-test; docker rm autoscale-test
