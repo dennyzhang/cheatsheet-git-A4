@@ -21,8 +21,6 @@ File me [[https://github.com/DennyZhang/cheatsheet-git-A4/issues][Issues]] or st
 
 See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][#denny-cheatsheets]]
 
-[[https://github.com/dennyzhang/cheatsheet-git-A4/blob/master/misc/git_workflow.png][Git Workflow]]
-
 ** Git General
 | Name                                           | Comment                                                        |
 |------------------------------------------------+----------------------------------------------------------------|
