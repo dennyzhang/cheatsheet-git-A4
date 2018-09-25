@@ -16,9 +16,8 @@
 <a href="http://makeapullrequest.com" target="_blank" rel="nofollow"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"/></a>
 #+END_HTML
 
-- PDF Link: [[https://github.com/dennyzhang/cheatsheet-git-A4/blob/master/cheatsheet-git-A4.pdf][cheatsheet-git-A4.pdf]]
+- PDF Link: [[https://github.com/dennyzhang/cheatsheet-git-A4/blob/master/cheatsheet-git-A4.pdf][cheatsheet-git-A4.pdf]], Category: [[https://cheatsheet.dennyzhang.com/category/tools/][tools]]
 - Blog URL: https://cheatsheet.dennyzhang.com/cheatsheet-git-A4
-- Category: [[https://cheatsheet.dennyzhang.com/category/tools/][tools]]
 
 File me [[https://github.com/DennyZhang/cheatsheet-git-A4/issues][Issues]] or star [[https://github.com/DennyZhang/cheatsheet-git-A4][this repo]].
 
@@ -31,12 +30,15 @@ See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][
 | Git diff two revision                          | =git diff ${sha1sum}..${sha2sum}=                              |
 | Git show file changes                          | =git diff --name-only ${sha1sum} ${sha2sum}=                   |
 | Show git config                                | =git config --global/system=                                   |
+
 ** Git Commit
-| Name                                           | Comment                                                            |
-|------------------------------------------------+--------------------------------------------------------------------|
-| Squash multiple comments to make history clean | =git rebase -i HEAD~4=; =git push origin branch-name --force= [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]] |
-| Git commit                                     | =git commit -m "XXX"=                                              |
-| Git add and commit                             | =git ci -m "XXX"=                                                  |
+| Name                             | Comment                                                                 |
+|----------------------------------+-------------------------------------------------------------------------|
+| Git squash to make history clean | =git rebase -i HEAD~4=; =git push origin <branch-name> --force= [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]]    |
+| Git commit and squash            | =git commit --amend --no-edit=, =git push origin <branch-name> --force= |
+| Git add patch                    | =git add -p=                                                            |
+| Git commit                       | =git commit -m "XXX"=                                                   |
+| Git add and commit               | =git ci -m "XXX"=                                                       |
 
 ** Git Diff
 | Name                                  | Comment                                                                     |
@@ -401,14 +403,14 @@ def Main():
  reviewDir = sys.argv[2]
  else:
  reviewDir = sys.argv[1]
- # Untar if needed
+# Untar if needed
  if os.path.isfile(reviewDir):
  os.system("tar zxvf %s -C /tmp"%reviewDir)
  reviewDir = "/tmp/%s"%(os.path.basename(reviewDir)[:-4])
  needToDeleteDiffDir = True
  else:
  assert(os.path.isdir(reviewDir))
- # Parse _file.list from reviewDir
+# Parse _file.list from reviewDir
  idxFileName = "%s/_file.list"%reviewDir
  if not os.path.isfile(idxFileName):
  print "Cannot find _file.list in the review directory!"
@@ -419,7 +421,7 @@ def Main():
  for line in f.readlines():
  files.append(line[:-1])
  f.close()
- # Now invoke vimdiff
+# Now invoke vimdiff
  i = -1;
  while i < len(files):
  printFiles(files);
@@ -488,7 +490,7 @@ def Main():
  print dir
  idxFile.write("%s\n"%gitFilePath);
  idxFile.close()
- #print gitFilePath, gitOldFilePath, gitNewFilePath, copyOldFilePath, copyNewFilePath
+#print gitFilePath, gitOldFilePath, gitNewFilePath, copyOldFilePath, copyNewFilePath
  copyFile(gitOldFilePath, copyOldFilePath)
  copyFile(gitNewFilePath, copyNewFilePath)
  return
