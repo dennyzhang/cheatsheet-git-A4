@@ -48,6 +48,7 @@ See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][
 | Compare two branches in CLI           | =git diff <branch_1>..<branch_2>= Make sure you have those branches locally |
 | Compare two revision in GitHub UI     | [[https://www.dennyzhang.com/github_wiki#sec-1-4][https://github.com/.../.../compare/sha1...sha2]]                              |
 | Compare latest 3 commits in GitHub UI | https://github.com/dennyzhang/cheatsheet-git-a4/compare/HEAD~3...HEAD       |
+| Configure default editor              | =export pager=cat=                                                          |
 
 ** Git Tag
 | Name                  | Comment                                          |
