@@ -18,19 +18,16 @@
 
 - PDF Link: [[https://github.com/dennyzhang/cheatsheet-git-A4/blob/master/cheatsheet-git-A4.pdf][cheatsheet-git-A4.pdf]], Category: [[https://cheatsheet.dennyzhang.com/category/tools/][tools]]
 - Blog URL: https://cheatsheet.dennyzhang.com/cheatsheet-git-A4
+- Related posts: [[https://cheatsheet.dennyzhang.com/cheatsheet-shell-A4][Shell CheatSheet]], [[https://github.com/topics/denny-cheatsheets][#denny-cheatsheets]]
 
 File me [[https://github.com/DennyZhang/cheatsheet-git-A4/issues][Issues]] or star [[https://github.com/DennyZhang/cheatsheet-git-A4][this repo]].
-
-See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][#denny-cheatsheets]]
-
-** Git General
-| Name                                           | Comment                                                        |
-|------------------------------------------------+----------------------------------------------------------------|
-| List all remote git branches                   | =git ls-remote --heads origin=                                 |
-| Git diff two revision                          | =git diff ${sha1sum}..${sha2sum}=                              |
-| Git show file changes                          | =git diff --name-only ${sha1sum} ${sha2sum}=                   |
-| Show git config                                | =git config --global/system=                                   |
-
+** Git Advanced
+| Name                                | Comment                                                                          |
+|-------------------------------------+----------------------------------------------------------------------------------|
+| Git squash to make history clean    | =git rebase -i HEAD~4=; =git push origin <branch-name> --force= [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]]             |
+| Find git branch by commit hash      | =git name-rev ${commit_hash}=, or https://${git_repo_link}/commit/${commit_hash} |
+| List all remote git branches        | =git ls-remote --heads origin=                                                   |
+| Git clone repo with another ssh key | =ssh-agent bash -c 'ssh-add yourkey; git clone git@github.com:user/project.git'= |
 ** Git Commit
 | Name                             | Comment                                                                 |
 |----------------------------------+-------------------------------------------------------------------------|
@@ -39,17 +36,30 @@ See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][
 | Git add patch                    | =git add -p=                                                            |
 | Git commit                       | =git commit -m "XXX"=                                                   |
 | Git add and commit               | =git ci -m "XXX"=                                                       |
-
+** Git log
+| Name                                             | Comment                                                     |
+|--------------------------------------------------+-------------------------------------------------------------|
+| Check recent commits                             | =git log -n 3=                                              |
+| Check commit by username                         | =git log origin/master -n 3 --author <denny>=               |
+| Check changes for a given file from a given user | =git log origin/master -n 3 --author <denny> <somefile.py>= |
 ** Git Diff
 | Name                                  | Comment                                                                     |
 |---------------------------------------+-----------------------------------------------------------------------------|
 | Compare git diff after commit         | =git diff --cached=                                                         |
 | Show changed file list                | =git diff --name-status=, =git diff --name-status --cached=                 |
+| Git diff two revision                 | =git diff ${sha1sum}..${sha2sum}=                                           |
+| Git show file changes                 | =git diff --name-only ${sha1sum} ${sha2sum}=                                |
+| Compare with previous version         | =git diff HEAD^ default.rb=                                                 |
 | Compare two branches in CLI           | =git diff <branch_1>..<branch_2>= Make sure you have those branches locally |
 | Compare two revision in GitHub UI     | [[https://www.dennyzhang.com/github_wiki#sec-1-4][https://github.com/.../.../compare/sha1...sha2]]                              |
 | Compare latest 3 commits in GitHub UI | https://github.com/dennyzhang/cheatsheet-git-a4/compare/HEAD~3...HEAD       |
 | Configure default editor              | =export pager=cat=                                                          |
-
+** Git Branch
+| Name                         | Comment                                  |
+|------------------------------+------------------------------------------|
+| List all remote git branches | =git ls-remote --heads origin=           |
+| Delete local branch          | =git branch -d <branch_name>=            |
+| Delete remote branch         | =git push origin --delete <branch_name>= |
 ** Git Tag
 | Name                  | Comment                                          |
 |-----------------------+--------------------------------------------------|
@@ -57,59 +67,18 @@ See more CheatSheets from Denny: [[https://github.com/topics/denny-cheatsheets][
 | Git Fetch all tags    | =git fetch --tags; git checkout tags/<tag_name>= |
 | Git delete local tag  | =git tag -d <tag_name>=                          |
 | Git delete remote tag | =git push --delete origin <tag_name>=            |
-
-** Git Branch
-| Name                 | Comment                                  |
-|----------------------+------------------------------------------|
-| Show remote branch   | =git ls-remote --heads origin=           |
-| Delete local branch  | =git branch -d <branch_name>=            |
-| Delete remote branch | =git push origin --delete <branch_name>= |
-
-** Git alias
+** Git Config
 | Name                   | Comment                                                 |
 |------------------------+---------------------------------------------------------|
+| Show git config        | =git config --global/system=                            |
 | Alias for git status   | =git config --global alias.st status= [[https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases][Link: git aliases]] |
 | Alias for git checkout | =git config --global alias.co checkout=                 |
 | Alias for git commit   | =git config --global alias.ci commit=                   |
-
 ** Git Submodule
 | Name                           | Comment                            |
 |--------------------------------+------------------------------------|
 | Git add a repo to current repo | =git submodule add <git_repo_url>= |
 | Update submodule               | =git submodule update=             |
-
-** git remote repo
-- Configure two remote endpoint
-
-#+BEGIN_SRC sh
-git clone git@bitbucket.org:lrpdevops/denny-mydevops.git
-
-git config remote.origin2.url git@github.com:denny/mydevops.git
-git config remote.origin.url git@bitbucket.org:lrpdevops/denny-mydevops.git
-
-git pull origin2 sprint-37
-
-## File: .git/config
-## ,-----------
-## | [core]
-## | 	repositoryformatversion = 0
-## | 	filemode = true
-## | 	bare = false
-## | 	logallrefupdates = true
-## | 	ignorecase = true
-## | 	precomposeunicode = true
-## | [remote "origin"]
-## | 	url = git@bitbucket.org:lrpdevops/denny-mydevops.git
-## | 	fetch = +refs/heads/*:refs/remotes/origin/*
-## | [branch "master"]
-## | 	remote = origin
-## | 	merge = refs/heads/master
-## | [remote "origin2"]
-## | 	url = git@github.com:denny/mydevops.git
-## | 	fetch = +refs/heads/*:refs/remotes/customer/*
-## `-----------
-#+END_SRC
-
 ** GitHub
 | Name                           | Comment   |
 |--------------------------------+-----------|
@@ -306,7 +275,6 @@ git merge upstream/master                               # Merge remote into loca
 git show 83fb499                                        # Show what a commit did.
 git show 83fb499:path/fo/file.ext                       # Shows the file as it appeared at 83fb499.
 git diff branch_1 branch_2                              # Check difference between branches
-git log                                                 # Show all the commits
 git status                                              # Show the changes from last commit
 
 # Commit history of a set of files
@@ -781,9 +749,6 @@ git config --global color.branch auto
 *** TODO git log -Sstring shows the commits which add or remove any file data matching string
 *** TODO git commit -a -m时, 如何处理不可见字符,例如回车,tab键
 *** TODO git apply(patch -p0)
-*** TODO In emacs eshell-mode, "git log | less" fail
-Spawning child process: invalid argument
-** # --8<-------------------------- separator ------------------------>8--
 ** DONE git diff: warning: terminal is not fully functional
    CLOSED: [2012-01-22 Sun 14:43]
 add to /etc/bash.profile
@@ -1274,11 +1239,6 @@ Here's a complete example in the hope that it helps someone:
 git revert -m 1 <commit-hash>
 git commit -m "Reverting the last commit which messed the repo."
 git push -u origin master
-** DONE git command: for a given file, compare with previous version: git diff HEAD^ default.rb
-   CLOSED: [2015-05-23 Sat 04:59]
-http://stackoverflow.com/questions/2428270/git-how-to-diff-changed-files-versus-previous-versions-after-a-pull
-git log -n 2 .kitchen.docker.yml
-git diff 25ed03cbfba39c1096a53abfb274c565907490ba..53f44c931b9465ce175fd2f8ab5f03002e8a2016 .kitchen.docker.yml
 ** DONE [#B] git local push hook: run code static check
    CLOSED: [2015-07-02 Thu 11:32]
 /Users/mac/Dropbox/private_data/osc/chef/iamdevops/.git/hooks/pre-push
@@ -1560,3 +1520,36 @@ EOF
 ** TODO git reset @
 ** TODO git reset @^
 ** TODO git lola
+* TODO git add alias for repo, and use two different ssh keys      :noexport:
+* TODO git remote repo                                             :noexport:
+- Configure two remote endpoint
+
+#+BEGIN_SRC sh
+git clone git@bitbucket.org:lrpdevops/denny-mydevops.git
+
+git config remote.origin2.url git@github.com:denny/mydevops.git
+git config remote.origin.url git@bitbucket.org:lrpdevops/denny-mydevops.git
+
+git pull origin2 sprint-37
+
+## File: .git/config
+## ,-----------
+## | [core]
+## | 	repositoryformatversion = 0
+## | 	filemode = true
+## | 	bare = false
+## | 	logallrefupdates = true
+## | 	ignorecase = true
+## | 	precomposeunicode = true
+## | [remote "origin"]
+## | 	url = git@bitbucket.org:lrpdevops/denny-mydevops.git
+## | 	fetch = +refs/heads/*:refs/remotes/origin/*
+## | [branch "master"]
+## | 	remote = origin
+## | 	merge = refs/heads/master
+## | [remote "origin2"]
+## | 	url = git@github.com:denny/mydevops.git
+## | 	fetch = +refs/heads/*:refs/remotes/customer/*
+## `-----------
+#+END_SRC
+
