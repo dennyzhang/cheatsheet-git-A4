@@ -115,7 +115,7 @@ License: Code is licensed under [[https://www.dennyzhang.com/wp-content/mit_lice
 * org-mode configuration                                           :noexport:
 #+STARTUP: overview customtime noalign logdone showall
 #+DESCRIPTION:
-#+KEYWORDS: 
+#+KEYWORDS:
 #+LATEX_HEADER: \usepackage[margin=0.6in]{geometry}
 #+LaTeX_CLASS_OPTIONS: [8pt]
 #+LATEX_HEADER: \usepackage[english]{babel}
@@ -135,16 +135,9 @@ License: Code is licensed under [[https://www.dennyzhang.com/wp-content/mit_lice
 #+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+EXPORT_EXCLUDE_TAGS: exclude noexport
 #+SEQ_TODO: TODO HALF ASSIGN | DONE BYPASS DELEGATE CANCELED DEFERRED
-#+LINK_UP:   
-#+LINK_HOME: 
+#+LINK_UP:
+#+LINK_HOME:
 * #  --8<-------------------------- separator ------------------------>8-- :noexport:
-* TODO undo local git commit                                       :noexport:
-* how people achieve this: https://github.com/kelseyhightower/nocode/issues/2524 :noexport:
-* TODO Truncate .git /Users/zdenny/Dropbox/org_data                :noexport:
-* TODO git reset --hard HEAD                                       :noexport:
-* TODO Role Model                                                  :noexport:
-https://github.com/tiimgreen/github-cheat-sheet
-* TODO make .git history small                                     :noexport:
 * DONE Github coveralls support traivs.ci python project           :noexport:
   CLOSED: [2017-09-13 Wed 16:56]
 https://coveralls.zendesk.com/hc/en-us/articles/201342869-Python
@@ -182,175 +175,6 @@ git fetch upstream
 git rebase upstream/master
 
 git checkout -b upstream upstream/master
-* TODO git undo: git add                                           :noexport:
-* TODO consolidate & beyond: https://github.com/arslanbilal/git-cheat-sheet :noexport:
-* TODO consolidate https://github.com/tchapi/markdown-cheatsheet   :noexport:
-* TODO more content                                                :noexport:
-** git
-# To set your identity:
-git config --global user.name "John Doe"
-git config --global user.email johndoe@example.com
-
-# To set your editor:
-git config --global core.editor emacs
-
-# To enable color:
-git config --global color.ui true
-
-# To stage all changes for commit:
-git add --all
-
-# To stash changes locally, this will keep the changes in a separate changelist
-# called stash and the working directory is cleaned. You can apply changes
-# from the stash anytime
-git stash
-
-# To stash changes with a message
-git stash save "message"
-
-# To list all the stashed changes
-git stash list
-
-# To apply the most recent change and remove the stash from the stash list
-git stash pop
-
-# To apply any stash from the list of stashes. This does not remove the stash
-# from the stash list
-git stash apply stash@{6}
-
-# To commit staged changes
-git commit -m "Your commit message"
-
-# To edit previous commit message
-git commit --amend
-
-# Git commit in the past
-git commit --date="`date --date='2 day ago'`"
-git commit --date="Jun 13 18:30:25 IST 2015"
-# more recent versions of Git also support --date="2 days ago" directly
-
-# To change the date of an existing commit
-git filter-branch --env-filter \
-    'if [ $GIT_COMMIT = 119f9ecf58069b265ab22f1f97d2b648faf932e0 ]
-     then
-         export GIT_AUTHOR_DATE="Fri Jan 2 21:38:53 2009 -0800"
-         export GIT_COMMITTER_DATE="Sat May 19 01:01:01 2007 -0700"
-     fi'
-
-# To removed staged and working directory changes
-git reset --hard
-
-# To go 2 commits back
-git reset --hard HEAD~2
-
-# To remove untracked files
-git clean -f -d
-
-# To remove untracked and ignored files
-git clean -f -d -x
-
-# To push to the tracked master branch:
-git push origin master
-
-# To push to a specified repository:
-git push git@github.com:username/project.git
-
-# To delete the branch "branch_name"
-git branch -D branch_name
-
-# To make an exisiting branch track a remote branch
-git branch -u upstream/foo
-
-# To see who commited which line in a file
-git blame filename
-
-# To sync a fork with the master repo:
-git remote add upstream git@github.com:name/repo.git    # Set a new repo
-git remote -v                                           # Confirm new remote repo
-git fetch upstream                                      # Get branches
-git branch -va                                          # List local - remote branches
-git checkout master                                     # Checkout local master branch
-git checkout -b new_branch                              # Create and checkout a new branch
-git merge upstream/master                               # Merge remote into local repo
-git show 83fb499                                        # Show what a commit did.
-git show 83fb499:path/fo/file.ext                       # Shows the file as it appeared at 83fb499.
-git diff branch_1 branch_2                              # Check difference between branches
-git status                                              # Show the changes from last commit
-
-# Commit history of a set of files
-git log --pretty=email --patch-with-stat --reverse --full-index -- Admin\*.py > Sripts.patch
-
-# Import commits from another repo
-git --git-dir=../some_other_repo/.git format-patch -k -1 --stdout <commit SHA> | git am -3 -k
-
-# View commits that will be pushed
-git log @{u}..
-
-# View changes that are new on a feature branch
-git log -p feature --not master
-git diff master...feature
-
-# Interactive rebase for the last 7 commits
-git rebase -i @~7
-
-# Diff files WITHOUT considering them a part of git
-# This can be used to diff files that are not in a git repo!
-git diff --no-index path/to/file/A path/to/file/B
-
-# To pull changes while overwriting any local commits
-git fetch --all
-git reset --hard origin/master
-
-# Update all your submodules
-git submodule update --init --recursive
-
-# Perform a shallow clone to only get latest commits
-# (helps save data when cloning large repos)
-git clone --depth 1 <remote-url>
-
-# To unshallow a clone
-git pull --unshallow
-
-# Create a bare branch (one that has no commits on it)
-git checkout --orphan branch_name
-
-# Checkout a new branch from a different starting point
-git checkout -b master upstream/master
-
-# Remove all stale branches (ones that have been deleted on remote)
-# So if you have a lot of useless branches, delete them on Github and then run this
-git remote prune origin
-
-# The following can be used to prune all remotes at once
-git remote prune $(git remote | tr '\n' ' ')
-
-# Revisions can also be identified with :/text
-# So, this will show the first commit that has "cool" in their message body
-git show :/cool
-
-# Undo parts of last commit in a specific file
-git checkout -p HEAD^ -- /path/to/file
-
-# Revert a commit and keep the history of the reverted change as a separate revert commit
-git revert <commit SHA>
-
-# Pich a commit from a branch to current branch. This is different than merge as
-# this just applies a single commit from a branch to current branch
-git cherry-pick <commit SHA1>
-** patch
-# Patch one file
-patch version1 < version.patch
-
-# Reverse a patch
-patch -R version1 < version.patch
-
-# Patch all files in a directory, adding any missing new files
-# -p strips leading slashes
-$ cd dir
-$ patch -p1 -i ../big.patch
-
-# Patch files in a directory, with one level (/) offset
-patch -p1 -r version1/ < version.patch
 * git                                           :noexport:IMPORTANT:Personal:
 | Item                          | Comment                                                        |
 |-------------------------------+----------------------------------------------------------------|
@@ -1331,16 +1155,6 @@ deploy from the revision you've set, but that's a bit confusing, based on
 what you're expecting to see.
 #+END_EXAMPLE
 
-docker stop autoscale-test; docker rm autoscale-test
-docker run -t -P -d --name autoscale-test totvslabs/chef:latest /bin/bash
-
-docker exec -it autoscale-test bash
-working_dir=/root/
-devops_git_repo="git@github.com:TOTVS/mdmdevops.git"
-devops_repo_name="mdmdevops"
-devops_branch="1.40-deploy"
-
-vim /tmp/github_id_rsa
 ** DONE git shallow clone: set the parameter to –depth 1
    CLOSED: [2016-10-18 Tue 19:32]
 https://blogs.gnome.org/simos/2009/04/18/git-clones-vs-shallow-git-clones/
@@ -1520,6 +1334,183 @@ EOF
 ** TODO git reset @
 ** TODO git reset @^
 ** TODO git lola
+* #  --8<-------------------------- separator ------------------------>8-- :noexport:
+* TODO undo local git commit                                       :noexport:
+* how people achieve this: https://github.com/kelseyhightower/nocode/issues/2524 :noexport:
+* TODO Truncate .git /Users/zdenny/Dropbox/org_data                :noexport:
+* TODO git reset --hard HEAD                                       :noexport:
+* TODO Role Model                                              :noexport:
+https://github.com/tiimgreen/github-cheat-sheet
+* TODO make .git history small                                     :noexport:
+* TODO git undo: git add                                           :noexport:
+* TODO consolidate & beyond: https://github.com/arslanbilal/git-cheat-sheet :noexport:
+* TODO consolidate https://github.com/tchapi/markdown-cheatsheet   :noexport:
+* TODO more content                                                :noexport:
+** git
+# To set your identity:
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+
+# To set your editor:
+git config --global core.editor emacs
+
+# To enable color:
+git config --global color.ui true
+
+# To stage all changes for commit:
+git add --all
+
+# To stash changes locally, this will keep the changes in a separate changelist
+# called stash and the working directory is cleaned. You can apply changes
+# from the stash anytime
+git stash
+
+# To stash changes with a message
+git stash save "message"
+
+# To list all the stashed changes
+git stash list
+
+# To apply the most recent change and remove the stash from the stash list
+git stash pop
+
+# To apply any stash from the list of stashes. This does not remove the stash
+# from the stash list
+git stash apply stash@{6}
+
+# To commit staged changes
+git commit -m "Your commit message"
+
+# To edit previous commit message
+git commit --amend
+
+# Git commit in the past
+git commit --date="`date --date='2 day ago'`"
+git commit --date="Jun 13 18:30:25 IST 2015"
+# more recent versions of Git also support --date="2 days ago" directly
+
+# To change the date of an existing commit
+git filter-branch --env-filter \
+    'if [ $GIT_COMMIT = 119f9ecf58069b265ab22f1f97d2b648faf932e0 ]
+     then
+         export GIT_AUTHOR_DATE="Fri Jan 2 21:38:53 2009 -0800"
+         export GIT_COMMITTER_DATE="Sat May 19 01:01:01 2007 -0700"
+     fi'
+
+# To removed staged and working directory changes
+git reset --hard
+
+# To go 2 commits back
+git reset --hard HEAD~2
+
+# To remove untracked files
+git clean -f -d
+
+# To remove untracked and ignored files
+git clean -f -d -x
+
+# To push to the tracked master branch:
+git push origin master
+
+# To push to a specified repository:
+git push git@github.com:username/project.git
+
+# To delete the branch "branch_name"
+git branch -D branch_name
+
+# To make an exisiting branch track a remote branch
+git branch -u upstream/foo
+
+# To see who commited which line in a file
+git blame filename
+
+# To sync a fork with the master repo:
+git remote add upstream git@github.com:name/repo.git    # Set a new repo
+git remote -v                                           # Confirm new remote repo
+git fetch upstream                                      # Get branches
+git branch -va                                          # List local - remote branches
+git checkout master                                     # Checkout local master branch
+git checkout -b new_branch                              # Create and checkout a new branch
+git merge upstream/master                               # Merge remote into local repo
+git show 83fb499                                        # Show what a commit did.
+git show 83fb499:path/fo/file.ext                       # Shows the file as it appeared at 83fb499.
+git diff branch_1 branch_2                              # Check difference between branches
+git status                                              # Show the changes from last commit
+
+# Commit history of a set of files
+git log --pretty=email --patch-with-stat --reverse --full-index -- Admin\*.py > Sripts.patch
+
+# Import commits from another repo
+git --git-dir=../some_other_repo/.git format-patch -k -1 --stdout <commit SHA> | git am -3 -k
+
+# View commits that will be pushed
+git log @{u}..
+
+# View changes that are new on a feature branch
+git log -p feature --not master
+git diff master...feature
+
+# Interactive rebase for the last 7 commits
+git rebase -i @~7
+
+# Diff files WITHOUT considering them a part of git
+# This can be used to diff files that are not in a git repo!
+git diff --no-index path/to/file/A path/to/file/B
+
+# To pull changes while overwriting any local commits
+git fetch --all
+git reset --hard origin/master
+
+# Update all your submodules
+git submodule update --init --recursive
+
+# Perform a shallow clone to only get latest commits
+# (helps save data when cloning large repos)
+git clone --depth 1 <remote-url>
+
+# To unshallow a clone
+git pull --unshallow
+
+# Create a bare branch (one that has no commits on it)
+git checkout --orphan branch_name
+
+# Checkout a new branch from a different starting point
+git checkout -b master upstream/master
+
+# Remove all stale branches (ones that have been deleted on remote)
+# So if you have a lot of useless branches, delete them on Github and then run this
+git remote prune origin
+
+# The following can be used to prune all remotes at once
+git remote prune $(git remote | tr '\n' ' ')
+
+# Revisions can also be identified with :/text
+# So, this will show the first commit that has "cool" in their message body
+git show :/cool
+
+# Undo parts of last commit in a specific file
+git checkout -p HEAD^ -- /path/to/file
+
+# Revert a commit and keep the history of the reverted change as a separate revert commit
+git revert <commit SHA>
+
+# Pich a commit from a branch to current branch. This is different than merge as
+# this just applies a single commit from a branch to current branch
+git cherry-pick <commit SHA1>
+** patch
+# Patch one file
+patch version1 < version.patch
+
+# Reverse a patch
+patch -R version1 < version.patch
+
+# Patch all files in a directory, adding any missing new files
+# -p strips leading slashes
+$ cd dir
+$ patch -p1 -i ../big.patch
+
+# Patch files in a directory, with one level (/) offset
+patch -p1 -r version1/ < version.patch
 * TODO git add alias for repo, and use two different ssh keys      :noexport:
 * TODO git remote repo                                             :noexport:
 - Configure two remote endpoint
@@ -1552,4 +1543,465 @@ git pull origin2 sprint-37
 ## | 	fetch = +refs/heads/*:refs/remotes/customer/*
 ## `-----------
 #+END_SRC
+* [#A] gitlab                                            :noexport:IMPORTANT:
+| Name                                                        | Summary |
+|-------------------------------------------------------------+---------|
+| /etc/gitlab/gitlab.rb                                       |         |
+| /var/opt/gitlab                                             |         |
+| /var/opt/gitlab/nginx/conf/gitlab-http.conf                 |         |
+| /opt/gitlab                                                 |         |
+| /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml |         |
+|-------------------------------------------------------------+---------|
+| gitlab-ctl start                                            |         |
+| gitlab-ctl status                                           |         |
+| gitlab-ctl tail                                             |         |
+| /var/log/gitlab/nginx/gitlab_error.log                      |         |
+| /var/log/gitlab                                             |         |
+| /var/opt/gitlab/gitlab-shell/config.yml                     |         |
+|-------------------------------------------------------------+---------|
+| gitlab-rake gitlab:env:info                                 |         |
+| gitlab-rake gitlab:check                                    |         |
+** DONE install gitlab
+   CLOSED: [2015-12-20 Sun 22:16]
+https://about.gitlab.com/downloads/#ubuntu1404
 
+devops-knowledgebase/code/docker_image/gitlab.dockerfile
+
+#+BEGIN_EXAMPLE
+########## How To Use Docker Image ###############
+##
+##  Install docker utility
+##  Download docker image: docker pull denny/gitlab:latest
+##
+##  Start container:
+##   docker run -t -d --privileged --name my-test -h test -p 8081:80 denny/gitlab:latest /bin/bash
+##
+##     docker exec -it my-test bash
+##     ps -ef | grep runsvdir-start
+##     nohup /opt/gitlab/embedded/bin/runsvdir-start &
+##     gitlab-ctl start
+##     curl http://127.0.0.1:80
+##################################################
+
+FROM denny/ruby2:latest
+MAINTAINER DennyZhang.com <denny.zhang001@gmail.com>
+
+########################################################################################
+# TODO: to be implemented
+# https://about.gitlab.com/downloads/#ubuntu1404
+apt-get install curl openssh-server ca-certificates postfix lsof
+curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
+apt-get install gitlab-ce
+gitlab-ctl reconfigure
+
+# Browse in GUI: Username/Password: root/5iveL!fe
+
+########################################################################################
+#+END_EXAMPLE
+** DONE [#A] gitlab import project from bitbucket
+  CLOSED: [2015-12-24 Thu 12:56]
+http://stratus3d.com/blog/2015/09/06/migrating-from-bitbucket-to-local-gitlab-server/
+http://opensourceame.com/transitioning-from-bitbucket-to-gitlab/
+
+The BitBucket import script will use the BitBucket API to add the
+public key as a deploy key for each repository your import, then clone
+down the repository via SSH and remove the deploy key once the import
+is complete.
+*** change /etc/gitlab/gitlab.rb
+*** restart gitlab
+*** misc
+#+BEGIN_EXAMPLE
+Integrate your server with Bitbucket
+
+Import projects from Bitbucket and login to your GitLab instance with your Bitbucket account.
+To enable the Bitbucket OmniAuth provider you must register your application with Bitbucket. Bitbucket will generate an application ID and secret key for you to use.
+Sign in to Bitbucket.
+Navigate to your individual user settings or a team's settings, depending on how you want the application registered. It does not matter if the application is registered as an individual or a team - that is entirely up to you.
+Select "OAuth" in the left menu.
+Select "Add consumer".
+Provide the required details.
+Name: This can be anything. Consider something like "<Organization>'s GitLab" or "<Your Name>'s GitLab" or something else descriptive.
+Application description: Fill this in if you wish.
+URL: The URL to your GitLab installation. 'https://gitlab.company.com'
+Select "Save".
+You should now see a Key and Secret in the list of OAuth customers. Keep this page open as you continue configuration.
+On your GitLab server, open the configuration file.
+For omnibus package:
+  sudo editor /etc/gitlab/gitlab.rb
+For instalations from source:
+  cd /home/git/gitlab
+
+  sudo -u git -H editor config/gitlab.yml
+See Initial OmniAuth Configuration for initial settings.
+Add the provider configuration:
+For omnibus package:
+  gitlab_rails['omniauth_providers'] = [
+    {
+      "name" => "bitbucket",
+      "app_id" => "YOUR_KEY",
+      "app_secret" => "YOUR_APP_SECRET",
+      "url" => "https://bitbucket.org/"
+    }
+  ]
+For installation from source:
+  - { name: 'bitbucket', app_id: 'YOUR_KEY',
+    app_secret: 'YOUR_APP_SECRET' }
+Change 'YOUR_APP_ID' to the key from the Bitbucket application page from step 7.
+Change 'YOUR_APP_SECRET' to the secret from the Bitbucket application page from step 7.
+Save the configuration file.
+If you're using the omnibus package, reconfigure GitLab (gitlab-ctl reconfigure).
+Restart GitLab for the changes to take effect.
+On the sign in page there should now be a Bitbucket icon below the regular sign in form. Click the icon to begin the authentication process. Bitbucket will ask the user to sign in and authorize the GitLab application. If everything goes well the user will be returned to GitLab and will be signed in.
+Bitbucket project import
+
+To allow projects to be imported directly into GitLab, Bitbucket requires two extra setup steps compared to GitHub and GitLab.com.
+Bitbucket doesn't allow OAuth applications to clone repositories over HTTPS, and instead requires GitLab to use SSH and identify itself using your GitLab server's SSH key.
+Step 1: Public key
+
+To be able to access repositories on Bitbucket, GitLab will automatically register your public key with Bitbucket as a deploy key for the repositories to be imported. Your public key needs to be at ~/.ssh/bitbucket_rsa.pub, which will expand to /home/git/.ssh/bitbucket_rsa.pub in most configurations.
+If you have that file in place, you're all set and should see the "Import projects from Bitbucket" option enabled. If you don't, do the following:
+Create a new SSH key:
+sudo -u git -H ssh-keygen
+When asked Enter file in which to save the key specify the correct path, eg. /home/git/.ssh/bitbucket_rsa. Make sure to use an empty passphrase.
+Configure SSH client to use your new key:
+Open the SSH configuration file of the git user.
+  sudo editor /home/git/.ssh/config
+Add a host configuration for bitbucket.org.
+Host bitbucket.org
+  IdentityFile ~/.ssh/bitbucket_rsa
+  User git
+Step 2: Known hosts
+
+To allow GitLab to connect to Bitbucket over SSH, you need to add 'bitbucket.org' to your GitLab server's known SSH hosts. Take the following steps to do so:
+Manually connect to 'bitbucket.org' over SSH, while logged in as the git account that GitLab will use:
+sudo -u git -H ssh bitbucket.org
+Verify the RSA key fingerprint you'll see in the response matches the one in the Bitbucket documentation (the specific IP address doesn't matter):
+The authenticity of host 'bitbucket.org (207.223.240.182)' can't be established.
+RSA key fingerprint is 97:8c:1b:f2:6f:14:6b:5c:3b:ec:aa:46:46:74:7c:40.
+Are you sure you want to continue connecting (yes/no)?
+If the fingerprint matches, type yes to continue connecting and have 'bitbucket.org' be added to your known hosts.
+Your GitLab server is now able to connect to Bitbucket over SSH.
+Restart GitLab to allow it to find the new public key.
+You should now see the "Import projects from Bitbucket" option on the New Project page enabled.
+#+END_EXAMPLE
+** DONE gitlab enable git clone: ssh with git: make sure ssh 22 port is listening
+   CLOSED: [2015-12-24 Thu 23:21]
+** DONE gitlab enable git clone: url incorrect
+  CLOSED: [2015-12-24 Thu 23:42]
+sed -i "s/external_url 'http:\/\/gitlab'/external_url 'http:\/\/git.jinganiam.com'/g"  /etc/gitlab/gitlab.rb
+** DONE [#A] gitlab: configure email sending: /etc/gitlab/gitlab.rb
+  CLOSED: [2015-12-25 Fri 15:32]
+Use smtp instead of sendmail/postfix.
+https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/doc/settings/smtp.md
+
+https://gist.github.com/xavierjurado/3138813
+
+
+/var/log/gitlab/gitlab-rails/production.log
+#+BEGIN_EXAMPLE
+SMTP settings
+
+If you would rather send application email via an SMTP server instead of via Sendmail, add the following configuration information to /etc/gitlab/gitlab.rb and run gitlab-ctl reconfigure. There are example configurations at the end of this page.
+gitlab_rails['smtp_enable'] = true
+gitlab_rails['smtp_address'] = "smtp.server"
+gitlab_rails['smtp_port'] = 465
+gitlab_rails['smtp_user_name'] = "smtp user"
+gitlab_rails['smtp_password'] = "smtp password"
+gitlab_rails['smtp_domain'] = "example.com"
+gitlab_rails['smtp_authentication'] = "login"
+gitlab_rails['smtp_enable_starttls_auto'] = true
+gitlab_rails['smtp_openssl_verify_mode'] = 'peer'
+
+# If your SMTP server does not like the default 'From: gitlab@localhost' you
+# can change the 'From' with this setting.
+gitlab_rails['gitlab_email_from'] = 'gitlab@example.com'
+gitlab_rails['gitlab_email_reply_to'] = 'noreply@example.com'
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+root@gitlab:/var/log/gitlab# tail /var/log/gitlab/gitlab-rails/production.log
+Processing by Admin::UsersController#new as HTML
+Completed 200 OK in 139ms (Views: 100.3ms | ActiveRecord: 7.2ms)
+
+Sent mail to dennyzhang@jingantech.com (980.2ms)
+
+Sent mail to denny.zhang001@gmail.com (1090.8ms)
+
+Sent mail to dennyzhang@jingantech.com (948.7ms)
+
+Sent mail to dennyzhang@jingantech.com (1033.7ms)
+#+END_EXAMPLE
+** DONE gitlab delete deployed key
+  CLOSED: [2015-12-26 Sat 11:49]
+http://doc.gitlab.com/ee/api/deploy_keys.html#delete-deploy-key
+https://groups.google.com/forum/#!topic/gitlabhq/Ak9pgY6u-vw
+** TODO gitlab add default reviewers for each repo
+** TODO [#B] gitlab import bitbucket repo timeout
+https://gitlab.com/gitlab-org/gitlab-ee/commit/4535db04b28996baf118bafeb77acd16065e5c5a
+
+http://git.jinganiam.com/authright/iam/import/new
+
+#+BEGIN_EXAMPLE
+Import repository
+
+The repository could not be imported.
+Cloning into bare repository '/var/opt/gitlab/git-data/repositories/authright/iam.git'...
+fatal: early EOF
+Git repository URL
+The repository must be accessible over http://, https:// or git://.
+If your HTTP repository is not publicly accessible, add authentication information to the URL: https://username:password@gitlab.company.com/group/project.git.
+The import will time out after 4 minutes. For big repositories, use a clone/push combination.
+To migrate an SVN repository, check out this document.
+#+END_EXAMPLE
+** TODO [#A] gitlab fail to connect
+#+BEGIN_EXAMPLE
+==> /var/log/gitlab/nginx/gitlab_access.log <==
+123.57.240.189 - - [28/Dec/2015:15:14:02 +0000] "GET /users/sign_in HTTP/1.1" 500 415 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36"
+123.57.240.189 - - [28/Dec/2015:15:14:02 +0000] "GET /static.css HTTP/1.1" 304 0 "http://git.jinganiam.com/users/sign_in" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36"
+123.57.240.189 - - [28/Dec/2015:15:14:02 +0000] "GET /favicon.ico HTTP/1.1" 200 5430 "http://git.jinganiam.com/users/sign_in" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36"
+
+==> /var/log/gitlab/gitlab-rails/production.log <==
+Started GET "/users/sign_in" for 123.57.240.189 at 2015-12-28 15:14:01 +0000
+Processing by SessionsController#new as HTML
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 1.5ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"passthru", :controller=>"omniauth_callbacks", :provider=>:saml} missing required keys: [:provider]):
+  app/controllers/sessions_controller.rb:98:in `auto_sign_in_with_provider'
+#+END_EXAMPLE
+** TODO gitlab add reviewers
+** DONE backup gitlab
+  CLOSED: [2016-03-05 Sat 10:20]
+https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/raketasks/backup_restore.md
+| Name                                                | Summary |
+|-----------------------------------------------------+---------|
+| gitlab-rake gitlab:backup:create                    |         |
+| ls -lth /var/opt/gitlab/backups                     |         |
+| gitlab-rake gitlab:backup:restore BACKUP=1393513186 |         |
+
+tar -cvf /home/denny/gitlab-20160201.tar.bz2 /var/opt/gitlab/
+ls -lth /home/denny/
+
+scp -i /home/denny/denny -P 2702 /home/denny/gitlab-20160201.tar.bz2 root@172.17.42.1:/home/denny/gitlab-20160201.tar.bz2
+#+BEGIN_EXAMPLE
+root@iZ25y7u44dnZ:~# docker exec -it my-gitlab bash
+docker exec -it my-gitlab bash
+]0;root@gitlab: /root@gitlab:/# which gitlab-rake
+which gitlab-rake
+/usr/bin/gitlab-rake
+]0;root@gitlab: /root@gitlab:/# gitlab-rake gitlab:backup:create
+gitlab-rake gitlab:backup:create
+
+
+Dumping database ...
+Dumping PostgreSQL database gitlabhq_production ... [DONE]
+done
+Dumping repositories ...
+ * root/devops-knowledgebase-doc ... [DONE]
+ * root/devops-knowledgebase-doc.wiki ...  [SKIPPED]
+ * liyouyou/uu-private ... [SKIPPED]
+ * liyouyou/uu-private.wiki ...  [SKIPPED]
+ * liaoweiwen/testGitLab ... [DONE]
+ * liaoweiwen/testGitLab.wiki ...  [SKIPPED]
+ * authright/devops_effort ... [DONE]
+ * authright/devops_effort.wiki ...  [SKIPPED]
+ * authright/iamdevops ... [DONE]
+ * authright/iamdevops.wiki ...  [SKIPPED]
+ * dennyzhang/devops-knowledgebase ... [DONE]
+ * dennyzhang/devops-knowledgebase.wiki ...  [SKIPPED]
+ * authright/fido ... [DONE]
+ * authright/fido.wiki ...  [SKIPPED]
+ * authright/doc ... [DONE]
+ * authright/doc.wiki ...  [SKIPPED]
+ * authright/iam_qa ... [DONE]
+ * authright/iam_qa.wiki ...  [SKIPPED]
+ * authright/iamui ... [DONE]
+ * authright/iamui.wiki ...  [SKIPPED]
+ * authright/mfa_andriod ... [DONE]
+ * authright/mfa_andriod.wiki ...  [SKIPPED]
+ * authright/jingan-voice-recog ... [DONE]
+ * authright/jingan-voice-recog.wiki ...  [SKIPPED]
+ * authright/iam ... [DONE]
+ * authright/iam.wiki ...  [SKIPPED]
+ * ngiam/core ... [DONE]
+ * ngiam/core.wiki ...  [SKIPPED]
+ * ngiam/web-mfa ... [DONE]
+ * ngiam/web-mfa.wiki ...  [SKIPPED]
+ * ngiam/web-sso ... [DONE]
+ * ngiam/web-sso.wiki ...  [SKIPPED]
+ * ngiam/ms-template ... [DONE]
+ * ngiam/ms-template.wiki ...  [SKIPPED]
+ * ngiam/web-admin ... [DONE]
+ * ngiam/web-admin.wiki ...  [SKIPPED]
+ * ngiam/doc ... [DONE]
+ * ngiam/doc.wiki ...  [SKIPPED]
+ * ngiam/rest ... [DONE]
+ * ngiam/rest.wiki ...  [SKIPPED]
+ * ngiam/android ... [DONE]
+ * ngiam/android.wiki ...  [SKIPPED]
+ * ngiam/ios ... [SKIPPED]
+ * ngiam/ios.wiki ...  [SKIPPED]
+ * ngiam/sdk-web ... [DONE]
+ * ngiam/sdk-web.wiki ...  [SKIPPED]
+ * ngiam/sdk-android ... [SKIPPED]
+ * ngiam/sdk-android.wiki ...  [SKIPPED]
+ * ngiam/sdk-ios ... [SKIPPED]
+ * ngiam/sdk-ios.wiki ...  [SKIPPED]
+ * ngiam/ngiam-rst ... [DONE]
+ * ngiam/ngiam-rst.wiki ...  [SKIPPED]
+ * ngiam/sample ... [DONE]
+ * ngiam/sample.wiki ...  [SKIPPED]
+ * ngiam/oauth-server ... [DONE]
+ * ngiam/oauth-server.wiki ...  [SKIPPED]
+ * ngiam/oauth-share ... [DONE]
+ * ngiam/oauth-share.wiki ...  [SKIPPED]
+ * ngiam/oauth-sample ... [DONE]
+ * ngiam/oauth-sample.wiki ...  [SKIPPED]
+done
+Dumping uploads ...
+done
+Dumping builds ...
+done
+Dumping artifacts ...
+done
+Dumping lfs objects ...
+done
+Creating backup archive: 1457092403_gitlab_backup.tar ... done
+Uploading backup archive to remote storage  ... skipped
+Deleting tmp directories ... done
+done
+done
+done
+done
+done
+done
+Deleting old backups ... skipping
+]0;root@gitlab: /root@gitlab:/#
+]0;root@gitlab: /root@gitlab:/# ls /mnt
+ls /mnt
+]0;root@gitlab: /root@gitlab:/#
+
+]0;root@gitlab: /root@gitlab:/# ls -lth /var/opt
+ls -lth /var/opt
+total 4.0K
+drwxr-xr-x 39 root root 4.0K Mar  4 11:52 gitlab
+]0;root@gitlab: /root@gitlab:/# ls -lth /var/opt/gitlab
+ls -lth /var/opt/gitlab
+total 44K
+drwx------  2 git          root       4.0K Mar  4 11:53 backups
+drwxr-x---  2 gitlab-redis git        4.0K Mar  4 11:50 redis
+drwx------  6 root         root       4.0K Mar  4 11:36 logrotate
+drwxr-xr-x 17 git          root       4.0K Jan  4 02:38 gitlab-rails
+drwxr-x--- 14 root         gitlab-www 4.0K Jan  4 01:47 nginx
+drwxr-xr-x  6 gitlab-psql  root       4.0K Jan  2 13:25 postgresql
+drwxr-x---  2 git          gitlab-www 4.0K Jan  2 13:25 gitlab-workhorse
+drwx------  2 git          root       4.0K Jan  2 11:58 gitlab-shell
+drwx------  5 git          root       4.0K Dec 25 01:07 git-data
+-rw-------  1 root         root         38 Dec 20 13:56 bootstrapped
+drwxr-xr-x  3 git          root       4.0K Dec 20 13:39 gitlab-ci
+]0;root@gitlab: /root@gitlab:/# ls -lth /var/opt/gitlab/backups
+ls -lth /var/opt/gitlab/backups
+total 499M
+-rw------- 1 git git 499M Mar  4 11:53 1457092403_gitlab_backup.tar
+]0;root@gitlab: /root@gitlab:/# date
+date
+Fri Mar  4 11:54:53 UTC 2016
+]0;root@gitlab: /root@gitlab:/# ls -lth /tmp/
+ls -lth /tmp/
+total 8.0K
+drwxr-xr-x 2 root root 4.0K Mar  4 11:44 CollectFiles-gitlab-123.57.240.189-22
+srwxrwxrwx 1 git  git     0 Jan  2 13:24 gitlab.socket
+-rw------- 1 git  git     0 Dec 24 04:20 RackMultipart20151224-24493-8ohvrj
+-rw------- 1 git  git     0 Dec 20 16:21 RackMultipart20151220-932-1erfiq0
+drwx------ 2 root root 4.0K Dec 20 13:53 gitlab-rails-db-migrate-1450619615-14391
+]0;root@gitlab: /root@gitlab:/# ls -lth /tmp/CollectFiles-gitlab-123.57.240.189-22
+ls -lth /tmp/CollectFiles-gitlab-123.57.240.189-22
+total 466M
+-rw-r--r-- 1 root root 465M Mar  4 11:44 CollectFiles-123.57.240.189-20160304-194242.tar.gz
+#+END_EXAMPLE
+** useful link
+https://about.gitlab.com
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-gitlab-as-your-very-own-private-github-clone
+https://github.com/gitlabhq/gitlabhq/blob/master/doc/install/installation.md
+** DONE gitlab check version:  gitlab-rake gitlab:env:info
+  CLOSED: [2016-04-11 Mon 20:19]
+#+BEGIN_EXAMPLE
+]0;root@my-gitlab: /var/opt/gitlab/nginxroot@my-gitlab:/var/opt/gitlab/nginx#  gitlab-rake gitlab:env:info
+ gitlab-rake gitlab:env:info
+
+System information
+System:		Ubuntu 14.04
+Current User:	git
+Using RVM:	no
+Ruby Version:	2.1.7p400
+Gem Version:	2.2.5
+Bundler Version:1.10.6
+Rake Version:	10.4.2
+Sidekiq Version:3.3.0
+
+GitLab information
+Version:	8.2.3
+Revision:	19daba8
+Directory:	/opt/gitlab/embedded/service/gitlab-rails
+DB Adapter:	postgresql
+URL:		http://gitlabcn.dennyzhang.com
+HTTP Clone URL:	http://gitlabcn.dennyzhang.com/some-group/some-project.git
+SSH Clone URL:	git@gitlabcn.dennyzhang.com:some-group/some-project.git
+Using LDAP:	no
+Using Omniauth:	no
+
+GitLab Shell
+Version:	2.6.8
+Repositories:	/var/opt/gitlab/git-data/repositories
+Hooks:		/opt/gitlab/embedded/service/gitlab-shell/hooks/
+Git:		/opt/gitlab/embedded/bin/git
+]0;root@my-gitlab: /var/opt/gitlab/nginxroot@my-gitlab:/var/opt/gitlab/nginx#
+#+END_EXAMPLE
+** DONE gitlab reset user's password: Admin area -> Users
+   CLOSED: [2016-04-12 Tue 10:33]
+** DONE [#A] gitlab reconfigure nginx redirect url: /opt/gitlab/bin/gitlab-rake db:schema:load db:seed_fu
+  CLOSED: [2016-04-14 Thu 08:47]
+https://gitlab.com/gitlab-org/omnibus-gitlab/issues/244
+http://stackoverflow.com/questions/26660084/external-url-must-include-a-fqdn
+
+Recipe: gitlab::default
+  * link[/opt/gitlab/service/gitlab-git-http-server] action delete (up to date)
+Recipe: gitlab::database_migrations
+  * execute[initialize gitlab-rails database] action nothing (skipped due to action :nothing)
+  * execute[initialize gitlab-ci database] action nothing (skipped due to action :nothing)
+  * bash[migrate gitlab-rails database] action nothing (skipped due to action :nothing)
+  * bash[migrate gitlab-ci database] action nothing (skipped due to action :nothing)
+Recipe: gitlab::gitlab-rails
+  * execute[clear the gitlab-rails cache] action run
+    - execute /opt/gitlab/bin/gitlab-rake cache:clear
+* TODO git logl                                                    :noexport:
+* TODO git cat-file                                                :noexport:
+* TODO git server hook
+https://www.atlassian.com/git/tutorials/git-hooks
+* HALF how to truncate git history                                 :noexport:
+https://gist.github.com/montonero/1196514
+https://passingcuriosity.com/2017/truncating-git-history/
+
+#+BEGIN_EXAMPLE
+#!/bin/bash
+git checkout --orphan temp $1
+git commit -m "Truncated history"
+git rebase --onto temp $1 master
+git branch -D temp
+#+END_EXAMPLE
+
+https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories-on-rebase
+git pull --allow-unrelated-histories
+
+#+BEGIN_EXAMPLE
+The default behavior has changed since git 2.9:
+
+"git merge" used to allow merging two branches that have no common
+base by default, which led to a brand new history of an existing
+project created and then get pulled by an unsuspecting maintainer,
+which allowed an unnecessary parallel history merged into the existing
+project. The command has been taught not to allow this by default,
+with an escape hatch --allow-unrelated-histories option to be used in
+a rare event that merges histories of two projects that started their
+lives independently.
+#+END_EXAMPLE
