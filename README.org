@@ -1343,8 +1343,6 @@ EOF
 https://github.com/tiimgreen/github-cheat-sheet
 * TODO make .git history small                                     :noexport:
 * TODO git undo: git add                                           :noexport:
-* TODO consolidate & beyond: https://github.com/arslanbilal/git-cheat-sheet :noexport:
-* TODO consolidate https://github.com/tchapi/markdown-cheatsheet   :noexport:
 * TODO more content                                                :noexport:
 ** git
 # To set your identity:
@@ -1975,8 +1973,9 @@ Recipe: gitlab::gitlab-rails
   * execute[clear the gitlab-rails cache] action run
     - execute /opt/gitlab/bin/gitlab-rake cache:clear
 * TODO git logl                                                    :noexport:
+* #  --8<-------------------------- separator ------------------------>8-- :noexport:
 * TODO git cat-file                                                :noexport:
-* TODO git server hook
+* TODO git server hook                                             :noexport:
 https://www.atlassian.com/git/tutorials/git-hooks
 * HALF how to truncate git history                                 :noexport:
 https://gist.github.com/montonero/1196514
@@ -2005,3 +2004,7 @@ with an escape hatch --allow-unrelated-histories option to be used in
 a rare event that merges histories of two projects that started their
 lives independently.
 #+END_EXAMPLE
+* #  --8<-------------------------- separator ------------------------>8-- :noexport:
+* TODO git cheatsheet: https://jimmysong.io/cheatsheets/git-tricks :noexport:
+* TODO consolidate & beyond: https://github.com/arslanbilal/git-cheat-sheet :noexport:
+* TODO consolidate https://github.com/tchapi/markdown-cheatsheet   :noexport:
