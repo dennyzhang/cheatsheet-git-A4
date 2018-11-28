@@ -2008,3 +2008,6 @@ lives independently.
 * TODO git cheatsheet: https://jimmysong.io/cheatsheets/git-tricks :noexport:
 * TODO consolidate & beyond: https://github.com/arslanbilal/git-cheat-sheet :noexport:
 * TODO consolidate https://github.com/tchapi/markdown-cheatsheet   :noexport:
+* TODO github shortcut keys in github: t -> search by filename     :noexport:
+https://help.github.com/categories/keyboard-shortcuts/
+* TODO github shortcut to jump in between files                    :noexport:
