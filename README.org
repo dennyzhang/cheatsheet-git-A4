@@ -27,15 +27,22 @@ File me [[https://github.com/DennyZhang/cheatsheet-git-A4/issues][Issues]] or st
 | Git squash to make history clean    | =git rebase -i HEAD~4=; =git push origin <branch-name> --force= [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]]             |
 | Find git branch by commit hash      | =git name-rev ${commit_hash}=, or https://${git_repo_link}/commit/${commit_hash} |
 | List all remote git branches        | =git ls-remote --heads origin=                                                   |
-| Git clone repo with another ssh key | =ssh-agent bash -c 'ssh-add yourkey; git clone git@github.com:user/project.git'= |
+| Git clone repo with another ssh key | ssh-agent bash -c 'ssh-add yourkey; git clone git@github.com:user/project.git'   |
 ** Git Commit
 | Name                             | Comment                                                                 |
 |----------------------------------+-------------------------------------------------------------------------|
 | Git squash to make history clean | =git rebase -i HEAD~4=; =git push origin <branch-name> --force= [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]]    |
 | Git commit and squash            | =git commit --amend --no-edit=, =git push origin <branch-name> --force= |
 | Git add patch                    | =git add -p=                                                            |
-| Git commit                       | =git commit -m "XXX"=                                                   |
-| Git add and commit               | =git ci -m "XXX"=                                                       |
+| Git commit                       | git commit -m 'XXX'                                                     |
+| Git add and commit               | git ci -m 'XXX'                                                         |
+** Git Undo
+| Name            | Comment                   |
+|-----------------+---------------------------|
+| Undo git commit | =git reset --hard HEAD~1= |
+| Undo git pull   | =git reset --hard=        |
+| Undo git merge  | =git merge --abort=       |
+| Undo git add    | =git reset filename.txt=  |
 ** Git log
 | Name                                             | Comment                                                     |
 |--------------------------------------------------+-------------------------------------------------------------|
@@ -71,6 +78,7 @@ File me [[https://github.com/DennyZhang/cheatsheet-git-A4/issues][Issues]] or st
 | Name                   | Comment                                                 |
 |------------------------+---------------------------------------------------------|
 | Show git config        | =git config --global/system=                            |
+| Edit git global config | =git config --global --edit=                            |
 | Alias for git status   | =git config --global alias.st status= [[https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases][Link: git aliases]] |
 | Alias for git checkout | =git config --global alias.co checkout=                 |
 | Alias for git commit   | =git config --global alias.ci commit=                   |
@@ -184,22 +192,20 @@ git checkout -b upstream upstream/master
 | git change url of remote repo | git remote set-url origin git://new.url.here                   |
 
 - command list
-| Item                                | Comment                                                                                                |
-|-------------------------------------+--------------------------------------------------------------------------------------------------------|
-| 撤销本地修改                        | git checkout dirname *.txt                                                                             |
-| 撤销最近一次提交　                  | git revert --no-commit head                                                                            |
-| git revert last change              | git reset --soft HEAD^                                                                                 |
-| undo git pull                       | git reset --hard                                                                                       |
-| revert a faulty branch merge        | 789a4e8a3b436050082db5747762158aaca00a27                                                               |
-|-------------------------------------+--------------------------------------------------------------------------------------------------------|
-| undo merge                          | git merge --abort                                                                                      |
-| 创建一个本地branch                  | git branch denny                                                                                       |
-| 删除一个本地branch                  | git branch -d denny                                                                                    |
-| 把本地新创建的branch push到server   | git push origin <branchname>                                                                           |
-| 删除server一个branch                | git push origin --delete <branchName>                                                                  |
-| 合并branch                          | git merge <branchname>                                                                                 |
-| 查看某个check-in的修改              | git diff  ed3563a9538a183cb1e545458691ea6f626db898                                                     |
-| git checkout file of given revision | git checkout 4d1c375e281627a7ea45b0b3abad08af51927851 server.py                                        |
+| Item                                | Comment                                                         |
+|-------------------------------------+-----------------------------------------------------------------|
+| 撤销本地修改                        | git checkout dirname *.txt                                      |
+| 撤销最近一次提交　                  | git revert --no-commit head                                     |
+| git revert last change              | git reset --soft HEAD^                                          |
+| revert a faulty branch merge        | 789a4e8a3b436050082db5747762158aaca00a27                        |
+|-------------------------------------+-----------------------------------------------------------------|
+| 创建一个本地branch                  | git branch denny                                                |
+| 删除一个本地branch                  | git branch -d denny                                             |
+| 把本地新创建的branch push到server   | git push origin <branchname>                                    |
+| 删除server一个branch                | git push origin --delete <branchName>                           |
+| 合并branch                          | git merge <branchname>                                          |
+| 查看某个check-in的修改              | git diff  ed3563a9538a183cb1e545458691ea6f626db898              |
+| git checkout file of given revision | git checkout 4d1c375e281627a7ea45b0b3abad08af51927851 server.py |
 
 - git branch
 | git                          | svn                            | comment                               |
@@ -1288,7 +1294,6 @@ fatal: revert failed
 https://stackoverflow.com/questions/38255655/trying-to-pull-files-from-my-github-repository-refusing-to-merge-unrelated-his
 ** TODO github generate http link for two commits
 ** #  --8<-------------------------- separator ------------------------>8-- :noexport:
-** TODO How to undo a git pull?
 ** TODO git duet wf dz
 ** TODO git diff --cache
 ** TODO git: ~/.git-authors
@@ -1335,14 +1340,12 @@ EOF
 ** TODO git reset @^
 ** TODO git lola
 * #  --8<-------------------------- separator ------------------------>8-- :noexport:
-* TODO undo local git commit                                       :noexport:
 * how people achieve this: https://github.com/kelseyhightower/nocode/issues/2524 :noexport:
 * TODO Truncate .git /Users/zdenny/Dropbox/org_data                :noexport:
 * TODO git reset --hard HEAD                                       :noexport:
 * TODO Role Model                                              :noexport:
 https://github.com/tiimgreen/github-cheat-sheet
 * TODO make .git history small                                     :noexport:
-* TODO git undo: git add                                           :noexport:
 * TODO more content                                                :noexport:
 ** git
 # To set your identity:
@@ -2011,3 +2014,7 @@ lives independently.
 * TODO github shortcut keys in github: t -> search by filename     :noexport:
 https://help.github.com/categories/keyboard-shortcuts/
 * TODO github shortcut to jump in between files                    :noexport:
+* #  --8<-------------------------- separator ------------------------>8-- :noexport:
+* TODO How to undo a git pull?                                     :noexport:
+* TODO undo local git commit                                       :noexport:
+* TODO git undo: git add                                           :noexport:
