@@ -1,6 +1,6 @@
 * Git CheatSheet                                                      :Tools:
 :PROPERTIES:
-:type:     git
+:type:     tool
 :export_file_name: cheatsheet-git-A4.pdf
 :END:
 
@@ -9,7 +9,7 @@
 <div id="the whole thing" style="overflow: hidden;">
 <div style="float: left; padding: 5px"> <a href="https://www.linkedin.com/in/dennyzhang001"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/linkedin.png" alt="linkedin" /></a></div>
 <div style="float: left; padding: 5px"><a href="https://github.com/dennyzhang"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/github.png" alt="github" /></a></div>
-<div style="float: left; padding: 5px"><a href="https://www.dennyzhang.com/slack" target="_blank" rel="nofollow"><img src="https://slack.dennyzhang.com/badge.svg" alt="slack"/></a></div>
+<div style="float: left; padding: 5px"><a href="https://www.dennyzhang.com/slack" target="_blank" rel="nofollow"><img src="https://www.dennyzhang.com/wp-content/uploads/sns/slack.png" alt="slack"/></a></div>
 </div>
 
 <br/><br/>
@@ -18,49 +18,78 @@
 
 - PDF Link: [[https://github.com/dennyzhang/cheatsheet-git-A4/blob/master/cheatsheet-git-A4.pdf][cheatsheet-git-A4.pdf]], Category: [[https://cheatsheet.dennyzhang.com/category/tools/][tools]]
 - Blog URL: https://cheatsheet.dennyzhang.com/cheatsheet-git-A4
-- Related posts: [[https://cheatsheet.dennyzhang.com/cheatsheet-shell-A4][Shell CheatSheet]], [[https://github.com/topics/denny-cheatsheets][#denny-cheatsheets]]
+- Related posts: [[https://cheatsheet.dennyzhang.com/cheatsheet-visualstudio-A4][Visual Studio CheatSheet]]
 
-File me [[https://github.com/DennyZhang/cheatsheet-git-A4/issues][Issues]] or star [[https://github.com/DennyZhang/cheatsheet-git-A4][this repo]].
+File me [[https://github.com/dennyzhang/cheatsheet-git-A4/issues][Issues]] or star [[https://github.com/dennyzhang/cheatsheet-git-A4][this repo]].
 ** Git Advanced
-| Name                                | Comment                                                                          |
-|-------------------------------------+----------------------------------------------------------------------------------|
-| Git squash to make history clean    | =git rebase -i HEAD~4=; =git push origin <branch-name> --force= [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]]             |
-| Find git branch by commit hash      | =git name-rev ${commit_hash}=, or https://${git_repo_link}/commit/${commit_hash} |
-| List all remote git branches        | =git ls-remote --heads origin=                                                   |
-| Git clone repo with another ssh key | ssh-agent bash -c 'ssh-add yourkey; git clone git@github.com:user/project.git'   |
+| Name                                | Comment                                                                               |
+|-------------------------------------+---------------------------------------------------------------------------------------|
+| [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][Git squash to make history clean]]    | =git rebase -i HEAD~4=; =git push origin <branch-name> --force=                       |
+| Find git branch by commit hash      | https://${git_repo_link}/commit/${commit_hash}, =git name-rev ${commit_hash}=         |
+| List all remote git branches        | =git ls-remote --heads origin=                                                        |
+| Git clone repo with another ssh key | ssh-agent bash -c 'ssh-add yourkey; git clone git@github.com:user/project.git'        |
+| Git clone to a specific folder      | =git clone https://github.com/google/cadvisor.git /go/src/github.com/google/cadvisor= |
+| [[https://docs.gitlab.com/ee/user/project/code_owners.html][Code Owners]]                         | Define individuals or teams that are responsible for code in a repository.            |
+
+** Git Remote
+| Name                             | Comment                                                          |
+|----------------------------------+------------------------------------------------------------------|
+| Git add a remote source          | =git remote add upstream git@github.com:thoughtbot/dotfiles.git= |
+| [[https://stackoverflow.com/questions/10603671/how-to-add-a-local-repo-and-treat-it-as-a-remote-repo][Git add a local folder as remote]] | =git init .=, =git remote add bak /tmp/test_git_folder=          |
+
 ** Git Commit
 | Name                             | Comment                                                                 |
 |----------------------------------+-------------------------------------------------------------------------|
-| Git squash to make history clean | =git rebase -i HEAD~4=; =git push origin <branch-name> --force= [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][link]]    |
+| [[https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit][Git squash to make history clean]] | =git rebase -i HEAD~4=; =git push origin <branch-name> --force=         |
+| Git amend                        | =git commit --amend --no-edit=                                          |
 | Git commit and squash            | =git commit --amend --no-edit=, =git push origin <branch-name> --force= |
 | Git add patch                    | =git add -p=                                                            |
 | Git commit                       | git commit -m 'XXX'                                                     |
 | Git add and commit               | git ci -m 'XXX'                                                         |
+
+[[https://cheatsheet.dennyzhang.com/cheatsheet-git-A4][https://raw.githubusercontent.com/dennyzhang/cheatsheet-git-A4/master/git-concept.png]]
 ** Git Undo
 | Name            | Comment                   |
 |-----------------+---------------------------|
 | Undo git commit | =git reset --hard HEAD~1= |
 | Undo git pull   | =git reset --hard=        |
-| Undo git merge  | =git merge --abort=       |
 | Undo git add    | =git reset filename.txt=  |
+| Undo git merge  | =git merge --abort=       |
 ** Git log
 | Name                                             | Comment                                                     |
 |--------------------------------------------------+-------------------------------------------------------------|
+| git sh1sum                                       | =git log -1 --pretty=format:%h=                             |
 | Check recent commits                             | =git log -n 3=                                              |
+| Show change content between tow commits          | =git log --pretty=oneline --abbrev-commit 1234...5678=      |
 | Check commit by username                         | =git log origin/master -n 3 --author <denny>=               |
 | Check changes for a given file from a given user | =git log origin/master -n 3 --author <denny> <somefile.py>= |
 ** Git Diff
 | Name                                  | Comment                                                                     |
 |---------------------------------------+-----------------------------------------------------------------------------|
 | Compare git diff after commit         | =git diff --cached=                                                         |
+| Compare two git tags                  | =git diff ${sha1sum}..${sha2sum}=                                           |
 | Show changed file list                | =git diff --name-status=, =git diff --name-status --cached=                 |
 | Git diff two revision                 | =git diff ${sha1sum}..${sha2sum}=                                           |
 | Git show file changes                 | =git diff --name-only ${sha1sum} ${sha2sum}=                                |
-| Compare with previous version         | =git diff HEAD^ default.rb=                                                 |
+| Show changeset of the latest commit   | =git diff HEAD^=                                                            |
+| Show prvious changeset for one file   | =git diff HEAD^ default.rb=                                                 |
 | Compare two branches in CLI           | =git diff <branch_1>..<branch_2>= Make sure you have those branches locally |
 | Compare two revision in GitHub UI     | [[https://www.dennyzhang.com/github_wiki#sec-1-4][https://github.com/.../.../compare/sha1...sha2]]                              |
 | Compare latest 3 commits in GitHub UI | https://github.com/dennyzhang/cheatsheet-git-a4/compare/HEAD~3...HEAD       |
-| Configure default editor              | =export pager=cat=                                                          |
+#+BEGIN_HTML
+<a href="https://cheatsheet.dennyzhang.com"><img align="right" width="185" height="37" src="https://raw.githubusercontent.com/dennyzhang/cheatsheet.dennyzhang.com/master/images/cheatsheet_dns.png"></a>
+#+END_HTML
+** Git Config
+| Name                     | Comment                                                                                                             |
+|--------------------------+---------------------------------------------------------------------------------------------------------------------|
+| Show git config          | =git config --global/system=                                                                                        |
+| Configure default editor | =export pager=cat=, =git config --global core.editor nano=                                                          |
+| Edit git global config   | =git config --global --edit=                                                                                        |
+| Alias for git status     | =git config --global alias.st status= [[https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases][Link: git aliases]]                                                             |
+| Alias for git checkout   | =git config --global alias.co checkout=                                                                             |
+| Alias for git commit     | =git config --global alias.ci commit=                                                                               |
+| Reset git url            | =git config --global url."git@github.com:dennyzhang/myrepo.git:".insteadOf "https://github.com/dennyzhang/myrepo/"= |
+| Reference                | [[https://github.com/github/gitignore][GitHub: gitignore examples]]                                                                                          |
 ** Git Branch
 | Name                         | Comment                                  |
 |------------------------------+------------------------------------------|
@@ -74,51 +103,29 @@ File me [[https://github.com/DennyZhang/cheatsheet-git-A4/issues][Issues]] or st
 | Git Fetch all tags    | =git fetch --tags; git checkout tags/<tag_name>= |
 | Git delete local tag  | =git tag -d <tag_name>=                          |
 | Git delete remote tag | =git push --delete origin <tag_name>=            |
-** Git Config
-| Name                   | Comment                                                 |
-|------------------------+---------------------------------------------------------|
-| Show git config        | =git config --global/system=                            |
-| Edit git global config | =git config --global --edit=                            |
-| Alias for git status   | =git config --global alias.st status= [[https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases][Link: git aliases]] |
-| Alias for git checkout | =git config --global alias.co checkout=                 |
-| Alias for git commit   | =git config --global alias.ci commit=                   |
 ** Git Submodule
 | Name                           | Comment                            |
 |--------------------------------+------------------------------------|
 | Git add a repo to current repo | =git submodule add <git_repo_url>= |
 | Update submodule               | =git submodule update=             |
 ** GitHub
-| Name                           | Comment   |
-|--------------------------------+-----------|
-| Generate link for a code block | [[https://www.dennyzhang.com/github_wiki#sec-1-3][link]]      |
-| Git clone wiki                 | [[https://www.dennyzhang.com/github_wiki#sec-1-1][link]]      |
-| Generate TOC                   | [[https://www.dennyzhang.com/github_wiki#sec-1-2][gh-md-toc]] |
-| Github Shortcut                | [[https://help.github.com/articles/using-keyboard-shortcuts][link]]      |
-
-- GitHub/GitLab markdown image size
-#+BEGIN_EXAMPLE
-<img src="images/pks_logging_components.png" width="700x">
-
-![](/uploads/d19fcc3d3b4d313c8cd7960a343463b6/table.png)
-<img src="/uploads/d19fcc3d3b4d313c8cd7960a343463b6/table.png"  width="120" height="120">
-
-![](./pic/pic1_50.png =100x20)
-You can skip the HEIGHT
-
-![](./pic/pic1s.png =250x)
-#+END_EXAMPLE
+| Name            | Comment                                                       |
+|-----------------+---------------------------------------------------------------|
+| Github Shortcut | [[https://help.github.com/articles/using-keyboard-shortcuts][Link: Using keyboard shortcuts]]                                |
+| Generate TOC    | [[https://www.dennyzhang.com/github_wiki#sec-1-2][gh-md-toc]]                                                     |
+| Reference       | [[https://www.dennyzhang.com/github_wiki#sec-1-3][link: generate link for code block]], [[https://www.dennyzhang.com/github_wiki#sec-1-1][link: git clone wiki repo]] |
 ** More Resources
 https://github.com/git-tips/tips
 
 License: Code is licensed under [[https://www.dennyzhang.com/wp-content/mit_license.txt][MIT License]].
 
 #+BEGIN_HTML
-<a href="https://www.dennyzhang.com"><img align="right" width="201" height="268" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/denny_201706.png"></a>
-<a href="https://www.dennyzhang.com"><img align="right" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/dns_small.png"></a>
+<a href="https://cheatsheet.dennyzhang.com"><img align="right" width="201" height="268" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/denny_201706.png"></a>
+<a href="https://cheatsheet.dennyzhang.com"><img align="right" src="https://raw.githubusercontent.com/dennyzhang/cheatsheet.dennyzhang.com/master/images/cheatsheet_dns.png"></a>
 
 <a href="https://www.linkedin.com/in/dennyzhang001"><img align="bottom" src="https://www.dennyzhang.com/wp-content/uploads/sns/linkedin.png" alt="linkedin" /></a>
 <a href="https://github.com/dennyzhang"><img align="bottom"src="https://www.dennyzhang.com/wp-content/uploads/sns/github.png" alt="github" /></a>
-<a href="https://www.dennyzhang.com/slack" target="_blank" rel="nofollow"><img align="bottom" src="https://slack.dennyzhang.com/badge.svg" alt="slack"/></a>
+<a href="https://www.dennyzhang.com/slack" target="_blank" rel="nofollow"><img align="bottom" src="https://www.dennyzhang.com/wp-content/uploads/sns/slack.png" alt="slack"/></a>
 #+END_HTML
 * org-mode configuration                                           :noexport:
 #+STARTUP: overview customtime noalign logdone showall
@@ -134,7 +141,7 @@ License: Code is licensed under [[https://www.dennyzhang.com/wp-content/mit_lice
 #+LATEX_HEADER: \rhead{Updated: \today}
 #+LATEX_HEADER: \rfoot{\thepage\ of \pageref{LastPage}}
 #+LATEX_HEADER: \lfoot{\href{https://github.com/dennyzhang/cheatsheet-git-A4}{GitHub: https://github.com/dennyzhang/cheatsheet-git-A4}}
-#+LATEX_HEADER: \lhead{\href{https://cheatsheet.dennyzhang.com/cheatsheet-slack-A4}{Blog URL: https://cheatsheet.dennyzhang.com/cheatsheet-git-A4}}
+#+LATEX_HEADER: \lhead{\href{https://cheatsheet.dennyzhang.com/cheatsheet-git-A4}{Blog URL: https://cheatsheet.dennyzhang.com/cheatsheet-git-A4}}
 #+AUTHOR: Denny Zhang
 #+EMAIL:  denny@dennyzhang.com
 #+TAGS: noexport(n)
@@ -172,17 +179,6 @@ We'll show you how to do this for Ruby in the following example.
   CLOSED: [2017-09-13 Wed 18:49]
 https://hub.docker.com/r/niccokunzmann/dockerhub-build-status-image/
 https://github.com/badges/shields/issues/886
-* DONE github fork rebase                                          :noexport:
-  CLOSED: [2017-10-06 Fri 21:46]
-https://robots.thoughtbot.com/keeping-a-github-fork-updated
-
-git clone git@github.com:croaky/dotfiles.git
-cd dotfiles
-git remote add upstream git@github.com:thoughtbot/dotfiles.git
-git fetch upstream
-git rebase upstream/master
-
-git checkout -b upstream upstream/master
 * git                                           :noexport:IMPORTANT:Personal:
 | Item                          | Comment                                                        |
 |-------------------------------+----------------------------------------------------------------|
@@ -1161,7 +1157,7 @@ deploy from the revision you've set, but that's a bit confusing, based on
 what you're expecting to see.
 #+END_EXAMPLE
 
-** DONE git shallow clone: set the parameter to –depth 1
+** DONE git shallow clone: set the parameter to -depth 1
    CLOSED: [2016-10-18 Tue 19:32]
 https://blogs.gnome.org/simos/2009/04/18/git-clones-vs-shallow-git-clones/
 
@@ -1512,7 +1508,6 @@ $ patch -p1 -i ../big.patch
 
 # Patch files in a directory, with one level (/) offset
 patch -p1 -r version1/ < version.patch
-* TODO git add alias for repo, and use two different ssh keys      :noexport:
 * TODO git remote repo                                             :noexport:
 - Configure two remote endpoint
 
@@ -1770,160 +1765,6 @@ ActionController::UrlGenerationError (No route matches {:action=>"passthru", :co
   app/controllers/sessions_controller.rb:98:in `auto_sign_in_with_provider'
 #+END_EXAMPLE
 ** TODO gitlab add reviewers
-** DONE backup gitlab
-  CLOSED: [2016-03-05 Sat 10:20]
-https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/raketasks/backup_restore.md
-| Name                                                | Summary |
-|-----------------------------------------------------+---------|
-| gitlab-rake gitlab:backup:create                    |         |
-| ls -lth /var/opt/gitlab/backups                     |         |
-| gitlab-rake gitlab:backup:restore BACKUP=1393513186 |         |
-
-tar -cvf /home/denny/gitlab-20160201.tar.bz2 /var/opt/gitlab/
-ls -lth /home/denny/
-
-scp -i /home/denny/denny -P 2702 /home/denny/gitlab-20160201.tar.bz2 root@172.17.42.1:/home/denny/gitlab-20160201.tar.bz2
-#+BEGIN_EXAMPLE
-root@iZ25y7u44dnZ:~# docker exec -it my-gitlab bash
-docker exec -it my-gitlab bash
-]0;root@gitlab: /root@gitlab:/# which gitlab-rake
-which gitlab-rake
-/usr/bin/gitlab-rake
-]0;root@gitlab: /root@gitlab:/# gitlab-rake gitlab:backup:create
-gitlab-rake gitlab:backup:create
-
-
-Dumping database ...
-Dumping PostgreSQL database gitlabhq_production ... [DONE]
-done
-Dumping repositories ...
- * root/devops-knowledgebase-doc ... [DONE]
- * root/devops-knowledgebase-doc.wiki ...  [SKIPPED]
- * liyouyou/uu-private ... [SKIPPED]
- * liyouyou/uu-private.wiki ...  [SKIPPED]
- * liaoweiwen/testGitLab ... [DONE]
- * liaoweiwen/testGitLab.wiki ...  [SKIPPED]
- * authright/devops_effort ... [DONE]
- * authright/devops_effort.wiki ...  [SKIPPED]
- * authright/iamdevops ... [DONE]
- * authright/iamdevops.wiki ...  [SKIPPED]
- * dennyzhang/devops-knowledgebase ... [DONE]
- * dennyzhang/devops-knowledgebase.wiki ...  [SKIPPED]
- * authright/fido ... [DONE]
- * authright/fido.wiki ...  [SKIPPED]
- * authright/doc ... [DONE]
- * authright/doc.wiki ...  [SKIPPED]
- * authright/iam_qa ... [DONE]
- * authright/iam_qa.wiki ...  [SKIPPED]
- * authright/iamui ... [DONE]
- * authright/iamui.wiki ...  [SKIPPED]
- * authright/mfa_andriod ... [DONE]
- * authright/mfa_andriod.wiki ...  [SKIPPED]
- * authright/jingan-voice-recog ... [DONE]
- * authright/jingan-voice-recog.wiki ...  [SKIPPED]
- * authright/iam ... [DONE]
- * authright/iam.wiki ...  [SKIPPED]
- * ngiam/core ... [DONE]
- * ngiam/core.wiki ...  [SKIPPED]
- * ngiam/web-mfa ... [DONE]
- * ngiam/web-mfa.wiki ...  [SKIPPED]
- * ngiam/web-sso ... [DONE]
- * ngiam/web-sso.wiki ...  [SKIPPED]
- * ngiam/ms-template ... [DONE]
- * ngiam/ms-template.wiki ...  [SKIPPED]
- * ngiam/web-admin ... [DONE]
- * ngiam/web-admin.wiki ...  [SKIPPED]
- * ngiam/doc ... [DONE]
- * ngiam/doc.wiki ...  [SKIPPED]
- * ngiam/rest ... [DONE]
- * ngiam/rest.wiki ...  [SKIPPED]
- * ngiam/android ... [DONE]
- * ngiam/android.wiki ...  [SKIPPED]
- * ngiam/ios ... [SKIPPED]
- * ngiam/ios.wiki ...  [SKIPPED]
- * ngiam/sdk-web ... [DONE]
- * ngiam/sdk-web.wiki ...  [SKIPPED]
- * ngiam/sdk-android ... [SKIPPED]
- * ngiam/sdk-android.wiki ...  [SKIPPED]
- * ngiam/sdk-ios ... [SKIPPED]
- * ngiam/sdk-ios.wiki ...  [SKIPPED]
- * ngiam/ngiam-rst ... [DONE]
- * ngiam/ngiam-rst.wiki ...  [SKIPPED]
- * ngiam/sample ... [DONE]
- * ngiam/sample.wiki ...  [SKIPPED]
- * ngiam/oauth-server ... [DONE]
- * ngiam/oauth-server.wiki ...  [SKIPPED]
- * ngiam/oauth-share ... [DONE]
- * ngiam/oauth-share.wiki ...  [SKIPPED]
- * ngiam/oauth-sample ... [DONE]
- * ngiam/oauth-sample.wiki ...  [SKIPPED]
-done
-Dumping uploads ...
-done
-Dumping builds ...
-done
-Dumping artifacts ...
-done
-Dumping lfs objects ...
-done
-Creating backup archive: 1457092403_gitlab_backup.tar ... done
-Uploading backup archive to remote storage  ... skipped
-Deleting tmp directories ... done
-done
-done
-done
-done
-done
-done
-Deleting old backups ... skipping
-]0;root@gitlab: /root@gitlab:/#
-]0;root@gitlab: /root@gitlab:/# ls /mnt
-ls /mnt
-]0;root@gitlab: /root@gitlab:/#
-
-]0;root@gitlab: /root@gitlab:/# ls -lth /var/opt
-ls -lth /var/opt
-total 4.0K
-drwxr-xr-x 39 root root 4.0K Mar  4 11:52 gitlab
-]0;root@gitlab: /root@gitlab:/# ls -lth /var/opt/gitlab
-ls -lth /var/opt/gitlab
-total 44K
-drwx------  2 git          root       4.0K Mar  4 11:53 backups
-drwxr-x---  2 gitlab-redis git        4.0K Mar  4 11:50 redis
-drwx------  6 root         root       4.0K Mar  4 11:36 logrotate
-drwxr-xr-x 17 git          root       4.0K Jan  4 02:38 gitlab-rails
-drwxr-x--- 14 root         gitlab-www 4.0K Jan  4 01:47 nginx
-drwxr-xr-x  6 gitlab-psql  root       4.0K Jan  2 13:25 postgresql
-drwxr-x---  2 git          gitlab-www 4.0K Jan  2 13:25 gitlab-workhorse
-drwx------  2 git          root       4.0K Jan  2 11:58 gitlab-shell
-drwx------  5 git          root       4.0K Dec 25 01:07 git-data
--rw-------  1 root         root         38 Dec 20 13:56 bootstrapped
-drwxr-xr-x  3 git          root       4.0K Dec 20 13:39 gitlab-ci
-]0;root@gitlab: /root@gitlab:/# ls -lth /var/opt/gitlab/backups
-ls -lth /var/opt/gitlab/backups
-total 499M
--rw------- 1 git git 499M Mar  4 11:53 1457092403_gitlab_backup.tar
-]0;root@gitlab: /root@gitlab:/# date
-date
-Fri Mar  4 11:54:53 UTC 2016
-]0;root@gitlab: /root@gitlab:/# ls -lth /tmp/
-ls -lth /tmp/
-total 8.0K
-drwxr-xr-x 2 root root 4.0K Mar  4 11:44 CollectFiles-gitlab-123.57.240.189-22
-srwxrwxrwx 1 git  git     0 Jan  2 13:24 gitlab.socket
--rw------- 1 git  git     0 Dec 24 04:20 RackMultipart20151224-24493-8ohvrj
--rw------- 1 git  git     0 Dec 20 16:21 RackMultipart20151220-932-1erfiq0
-drwx------ 2 root root 4.0K Dec 20 13:53 gitlab-rails-db-migrate-1450619615-14391
-]0;root@gitlab: /root@gitlab:/# ls -lth /tmp/CollectFiles-gitlab-123.57.240.189-22
-ls -lth /tmp/CollectFiles-gitlab-123.57.240.189-22
-total 466M
--rw-r--r-- 1 root root 465M Mar  4 11:44 CollectFiles-123.57.240.189-20160304-194242.tar.gz
-#+END_EXAMPLE
-** useful link
-https://about.gitlab.com
-
-https://www.digitalocean.com/community/tutorials/how-to-set-up-gitlab-as-your-very-own-private-github-clone
-https://github.com/gitlabhq/gitlabhq/blob/master/doc/install/installation.md
 ** DONE gitlab check version:  gitlab-rake gitlab:env:info
   CLOSED: [2016-04-11 Mon 20:19]
 #+BEGIN_EXAMPLE
@@ -2018,3 +1859,51 @@ https://help.github.com/categories/keyboard-shortcuts/
 * TODO How to undo a git pull?                                     :noexport:
 * TODO undo local git commit                                       :noexport:
 * TODO git undo: git add                                           :noexport:
+* #  --8<-------------------------- separator ------------------------>8-- :noexport:
+* TODO git backport                                                :noexport:
+* TODO GitHub/GitLab markdown image size                           :noexport:
+#+BEGIN_EXAMPLE
+<img src="images/pks_logging_components.png" width="700x">
+
+![](/uploads/d19fcc3d3b4d313c8cd7960a343463b6/table.png)
+<img src="/uploads/d19fcc3d3b4d313c8cd7960a343463b6/table.png"  width="120" height="120">
+
+![](./pic/pic1_50.png =100x20)
+You can skip the HEIGHT
+
+![](./pic/pic1s.png =250x)
+#+END_EXAMPLE
+* TODO git get branch name from git commit hash                    :noexport:
+https://stackoverflow.com/questions/2706797/finding-what-branch-a-git-commit-came-from
+
+git branch --contains b1f5eb736a19e3be00c7c1a535f367b5fb8928bb
+b1f5eb736a19e3be00c7c1a535f367b5fb8928bb
+* TODO git find out which commit has deleted a file/folder         :noexport:
+* TODO git HTTPS ACCESS                                            :noexport:
+https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/development/source-version-control/git-cheat-sheet#https-access-using-netrc
+* TODO consolidate: https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/development/source-version-control/git-cheat-sheet#https-access-using-netrc :noexport:
+* #  --8<-------------------------- separator ------------------------>8-- :noexport:
+* github add an image                                              :noexport:
+https://stackoverflow.com/questions/14494747/add-images-to-readme-md-on-github
+
+Try this markdown:
+
+![alt text](http://url/to/img.png)
+I think you can link directly to the raw version of an image if it's stored in your repository. i.e.
+
+![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+* TODO markdown add code snippet                                   :noexport:
+* #  --8<-------------------------- separator ------------------------>8-- :noexport:
+* HALF [#A] git add alias for repo, and use two different ssh keys :noexport:
+https://gist.github.com/jexchan/2351996
+https://medium.freecodecamp.org/manage-multiple-github-accounts-the-ssh-way-2dadc30ccaca
+
+Host github.com-jexchan
+	HostName github.com
+	User git
+	IdentityFile ~/.ssh/id_rsa_jexchan
+* TODO Git push to a new remote after shallow clone                :noexport:
+https://stackoverflow.com/questions/27614458/git-push-to-a-new-remote-after-shallow-clone
+* TODO git push --force-with-lease vs. --force                     :noexport:
+https://stackoverflow.com/questions/52823692/git-push-force-with-lease-vs-force
+http://weiqingtoh.github.io/force-with-lease/
